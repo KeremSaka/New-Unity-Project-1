@@ -15,8 +15,8 @@ MonoBehaviour:
     vuforiaLicenseKey: AfQZjaj/////AAAAGc3rfrVXZ0j8hejawjGTK+4q3ECjQflYIM2eiv+IPg6vk2EvE8Usam+HjfJPVKCSUJXlxlXaDhBiFLdpe2/Z/68xFgQbcRuGquTbvk2NbvxgkDdibVqR6E/YFKNYmKbBdDcyICt8zNtbZY5QiHyiqxIPCW2+vTwnF4Q4hh2p3hypXceLRlCaNE6wG7Bzf3luzpS3P3omq9RZ0MKEusJoa1LiFvYz2QyBFM0fKedVW3pLHIWzHR5+LpyNqaJts6bie5/iFOmsshwK+JtOOoGWNB+E1iDiskym3GMEC857ysCT1KfYHQdpjNS759FhxyLxQwpMV8UmMHwaNJZNT65Lo3E8GEoQkYfZW66aM/Psf22r
     delayedInitialization: 0
     cameraDeviceModeSetting: -1
-    maxSimultaneousImageTargets: 2
-    maxSimultaneousObjectTargets: 2
+    maxSimultaneousImageTargets: 1
+    maxSimultaneousObjectTargets: 1
     useDelayedLoadingObjectTargets: 0
     cameraDirection: 0
     mirrorVideoBackground: 0
@@ -44,11 +44,9 @@ MonoBehaviour:
       ContainsMagnet: 0
   databaseLoad:
     dataSetsToLoad:
-    - TorretQR
-    - QRTarget
+    - QR_Codes
     dataSetsToActivate:
-    - TorretQR
-    - QRTarget
+    - QR_Codes
   videoBackground:
     clippingMode: 0
     matteShader: {fileID: 4800000, guid: f84e93cca971cda47a225f4c6a4156c9, type: 3}
