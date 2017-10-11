@@ -11,7 +11,8 @@ public class MovePlayer : MonoBehaviour {
 	NavMeshAgent _navMeshAgent;
 
     private float health = 10f;
-
+    public EnemyAnimationController enemyAnimation;
+    private bool dying = false;
 	// Use this for initialization
 	void Start () {
 
@@ -26,11 +27,14 @@ public class MovePlayer : MonoBehaviour {
 	}
 	
 	private void SetDestination(){
-
-		if (_destination != null) {
-			Vector3 targetVector = _destination.transform.position;
-			_navMeshAgent.SetDestination (targetVector);
-		}
+        if (!dying)
+        {
+            if (_destination != null)
+            {
+                Vector3 targetVector = _destination.transform.position;
+                _navMeshAgent.SetDestination(targetVector);
+            }
+        }
 	}
 
     void Update()
@@ -39,26 +43,30 @@ public class MovePlayer : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other){
-		if (other.gameObject.tag == "Destination") {
-            GameData.Instance.EnemyReachedDestination++;
-
-            Destroy(this.gameObject);
-        }
-
-        if (other.gameObject.tag == "Bullet")
+        if (!dying)
         {
-            ProjectileMovement projectile =  other.gameObject.GetComponent<ProjectileMovement>();
-            decreaseHealth(projectile.getDamage());
-            Debug.Log(health);
-            Destroy(other.gameObject);
-            if (health <= 0)
+            if (other.gameObject.tag == "Destination")
             {
-                GameData.Instance.EnemyKilled++;
+                GameData.Instance.EnemyReachedDestination++;
 
-                
                 Destroy(this.gameObject);
             }
-            
+
+            if (other.gameObject.tag == "Bullet")
+            {
+                ProjectileMovement projectile = other.gameObject.GetComponent<ProjectileMovement>();
+                decreaseHealth(projectile.getDamage());
+                Debug.Log(health);
+                Destroy(other.gameObject);
+                if (health <= 0)
+                {
+                    GameData.Instance.EnemyKilled++;
+
+                    enemyAnimation.isDead = true;
+                    StartCoroutine(Death());
+                }
+
+            }
         }
 
     }
@@ -66,11 +74,22 @@ public class MovePlayer : MonoBehaviour {
     public void decreaseHealth(float damage)
     {
         health -= damage;
-
+        if(enemyAnimation != null)
+        {
+            enemyAnimation.getDamage = true;
+        }
     }
 
     public void setDestination(Transform destination)
     {
         _destination = destination;
+    }
+
+    IEnumerator Death()
+    {
+        _navMeshAgent.enabled = false;
+        yield return new WaitForSeconds(2.5f);
+
+        Destroy(this.gameObject);
     }
 }
