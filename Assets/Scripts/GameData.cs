@@ -37,11 +37,6 @@ public class GameData
         set;
     }
 
-    public int NumberOfEnemy
-    {
-        get;
-        set;
-    }
 
     public int EnemyKilled
     {
@@ -50,6 +45,18 @@ public class GameData
     }
 
     public int EnemyReachedDestination
+    {
+        get;
+        set;
+    }
+
+    public int MaxEnemyNumber
+    {
+        get;
+        set;
+    }
+
+    public int LevelNumber
     {
         get;
         set;

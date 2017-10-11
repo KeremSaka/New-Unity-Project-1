@@ -22,7 +22,7 @@ public class MovePlayer : MonoBehaviour {
 		} else {
 			SetDestination ();
 		}
-        GameData.Instance.NumberOfEnemy++;
+
 	}
 	
 	private void SetDestination(){
@@ -41,7 +41,7 @@ public class MovePlayer : MonoBehaviour {
     private void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "Destination") {
             GameData.Instance.EnemyReachedDestination++;
-            GameData.Instance.NumberOfEnemy--;
+
             Destroy(this.gameObject);
         }
 
@@ -54,7 +54,7 @@ public class MovePlayer : MonoBehaviour {
             if (health <= 0)
             {
                 GameData.Instance.EnemyKilled++;
-                GameData.Instance.NumberOfEnemy--;
+
                 
                 Destroy(this.gameObject);
             }
