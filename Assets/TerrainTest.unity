@@ -95,7 +95,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.44
+    agentRadius: 0.1
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -103,7 +103,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.14666666
+    cellSize: 0.033333335
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -162,6 +162,14 @@ Prefab:
     - target: {fileID: 100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
       propertyPath: m_Name
       value: Fence_Timber_Small_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
@@ -571,6 +579,14 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
   m_IsPrefabParent: 0
@@ -969,6 +985,14 @@ Prefab:
       propertyPath: m_Name
       value: Fence_Timber_Small_01 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
   m_IsPrefabParent: 0
@@ -1093,6 +1117,14 @@ Prefab:
       propertyPath: m_Name
       value: Fence_Timber_Small_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
   m_IsPrefabParent: 0
@@ -1150,6 +1182,14 @@ Prefab:
     - target: {fileID: 100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
       propertyPath: m_Name
       value: Fence_Timber_Small_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
@@ -1572,7 +1612,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bf30d577eead1ef40bcf2b404289daf4, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bf30d577eead1ef40bcf2b404289daf4, type: 2}
@@ -1779,7 +1819,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a03d40a2119b00e4ea30a894ecfc5e25, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.3333333
+      value: -0.82
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a03d40a2119b00e4ea30a894ecfc5e25, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1816,6 +1856,10 @@ Prefab:
     - target: {fileID: 400000, guid: a03d40a2119b00e4ea30a894ecfc5e25, type: 2}
       propertyPath: m_LocalScale.z
       value: 3.3333347
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a03d40a2119b00e4ea30a894ecfc5e25, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a03d40a2119b00e4ea30a894ecfc5e25, type: 2}
@@ -1874,6 +1918,14 @@ Prefab:
     - target: {fileID: 100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
       propertyPath: m_Name
       value: Fence_Timber_Small_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
@@ -2230,6 +2282,14 @@ Prefab:
       propertyPath: m_Name
       value: Fence_Timber_Small_01 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
   m_IsPrefabParent: 0
@@ -2514,16 +2574,16 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 756293e4cb1bcf245ab7762a5fcc1bc9, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 946360392}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.7, y: 0.098000005, z: 10.286385}
-  m_LocalScale: {x: 0.15748031, y: 0.15748031, z: 0.15748031}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.28499997, y: 0.0049, z: 0.5143192}
+  m_LocalScale: {x: 0.007874015, y: 0.007874015, z: 0.007874015}
   m_Children:
   - {fileID: 1745214954}
   - {fileID: 1424940513}
   - {fileID: 147341535}
   - {fileID: 798054727}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1220914066}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &952310815
 Prefab:
@@ -2641,6 +2701,14 @@ Prefab:
     - target: {fileID: 100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
       propertyPath: m_Name
       value: Fence_Timber_Small_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
@@ -2940,6 +3008,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
   m_IsPrefabParent: 0
@@ -2997,6 +3073,14 @@ Prefab:
     - target: {fileID: 100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
       propertyPath: m_Name
       value: Fence_Timber_Small_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
@@ -3086,6 +3170,8 @@ MonoBehaviour:
     type: 2}
   spawnpoint: []
   destination: {fileID: 723307017}
+  Walls: []
+  WallHealth: []
 --- !u!1001 &1110471078
 Prefab:
   m_ObjectHideFlags: 0
@@ -3135,6 +3221,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3314,6 +3408,14 @@ Prefab:
     - target: {fileID: 100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
       propertyPath: m_Name
       value: Fence_Timber_Small_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
@@ -3839,6 +3941,14 @@ Prefab:
       propertyPath: m_Name
       value: Fence_Timber_Small_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
   m_IsPrefabParent: 0
@@ -4163,6 +4273,14 @@ Prefab:
       propertyPath: m_Name
       value: Fence (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
   m_IsPrefabParent: 0
@@ -4274,6 +4392,14 @@ Prefab:
     - target: {fileID: 100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
       propertyPath: m_Name
       value: Fence_Timber_Small_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
@@ -4398,6 +4524,14 @@ Prefab:
     - target: {fileID: 100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
       propertyPath: m_Name
       value: Fence_Timber_Small_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
@@ -4667,7 +4801,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384a0d8cc71cef74a873b3353337ea2c, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 384a0d8cc71cef74a873b3353337ea2c, type: 2}
       propertyPath: m_Materials.Array.data[0]
@@ -4699,15 +4833,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384a0d8cc71cef74a873b3353337ea2c, type: 2}
       propertyPath: m_LocalScale.x
-      value: 7
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384a0d8cc71cef74a873b3353337ea2c, type: 2}
       propertyPath: m_LocalScale.y
-      value: 7
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384a0d8cc71cef74a873b3353337ea2c, type: 2}
       propertyPath: m_LocalScale.z
-      value: 7
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 384a0d8cc71cef74a873b3353337ea2c, type: 2}
       propertyPath: mWidth
@@ -4828,6 +4962,14 @@ Prefab:
     - target: {fileID: 400000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
@@ -5195,7 +5337,7 @@ GameObject:
   - component: {fileID: 1863824515}
   - component: {fileID: 1863824514}
   m_Layer: 0
-  m_Name: Fround
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5214,7 +5356,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4cdfb28a0bd964b4585a7829b0cd60b0, type: 2}
+  - {fileID: 2100000, guid: 0ad3b12bc672edd498ddd6b2ec85d6ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5261,8 +5403,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1863824513}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.014, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalPosition: {x: 0, y: 0.0049000005, z: 0}
+  m_LocalScale: {x: 0.10500001, y: 0.10500001, z: 0.10500001}
   m_Children:
   - {fileID: 723307017}
   - {fileID: 1421604269}
@@ -5411,6 +5553,18 @@ Prefab:
       propertyPath: m_Name
       value: TowerWall
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
   m_IsPrefabParent: 0
@@ -5419,7 +5573,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1220914066}
     m_Modifications:
     - target: {fileID: 4596595405205086, guid: 9098ada988409d24f9bc648f0504deb2, type: 2}
       propertyPath: m_LocalPosition.x
@@ -5427,7 +5581,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4596595405205086, guid: 9098ada988409d24f9bc648f0504deb2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 4596595405205086, guid: 9098ada988409d24f9bc648f0504deb2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5435,15 +5589,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4596595405205086, guid: 9098ada988409d24f9bc648f0504deb2, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4596595405205086, guid: 9098ada988409d24f9bc648f0504deb2, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4596595405205086, guid: 9098ada988409d24f9bc648f0504deb2, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4596595405205086, guid: 9098ada988409d24f9bc648f0504deb2, type: 2}
       propertyPath: m_LocalRotation.w
@@ -5455,15 +5609,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4596595405205086, guid: 9098ada988409d24f9bc648f0504deb2, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 0.015
       objectReference: {fileID: 0}
     - target: {fileID: 4596595405205086, guid: 9098ada988409d24f9bc648f0504deb2, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 0.015
       objectReference: {fileID: 0}
     - target: {fileID: 4596595405205086, guid: 9098ada988409d24f9bc648f0504deb2, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 0.015
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9098ada988409d24f9bc648f0504deb2, type: 2}
@@ -5581,6 +5735,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
   m_IsPrefabParent: 0
@@ -5637,6 +5799,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bb0f4763c100ccf4ab82321fdc0ba04d, type: 3}
+      propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
