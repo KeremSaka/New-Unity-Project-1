@@ -8,15 +8,16 @@ public class Game : MonoBehaviour {
     public Transform destination;
     public Transform Tower;
     public GameObject[] Walls;
-    private MovePlayer[] Enemys;
+    public MovePlayer[] Enemys;
     public float[] WallHealth;
     public float TowerHealth = 100;
+    public int MaxEnemyNumber = 10;
 	// Use this for initialization
 	void Start () {
         GameData.Instance.MaxEnemyNumber = (GameData.Instance.LevelNumber + 1) * 10;
         
-        Enemys = new MovePlayer[GameData.Instance.MaxEnemyNumber];
-        StartCoroutine(SpawnEnemys(GameData.Instance.MaxEnemyNumber));
+        Enemys = new MovePlayer[MaxEnemyNumber];
+        StartCoroutine(SpawnEnemys(MaxEnemyNumber));
         WallHealth = new float[Walls.Length];
         for(int i = 0; i< Walls.Length; i++)
         {
@@ -33,20 +34,25 @@ public class Game : MonoBehaviour {
     {
         for (int i = 0; i < number; i++)
         {
-            GameObject enemy = Instantiate(enemyPrefab, spawnpoint[Random.Range(0, spawnpoint.Length - 1)], false);
+            int temp = Random.Range(0, spawnpoint.Length - 1);
+            GameObject enemy = Instantiate(enemyPrefab, spawnpoint[temp], false);
             MovePlayer mp = enemy.GetComponent<MovePlayer>();
+
+           
             Enemys[i] = mp;
-            //int target = NearestWall(enemy.transform);
-            mp.setDestination(Tower);
-            mp.game = this.gameObject.GetComponent<Game>();
-            //mp.targetNR = target;
+            int target = NearestWall(spawnpoint[temp]);
+            Debug.Log(target);
+            mp.setDestination(Walls[target].transform);
+            mp.game = this;
+            mp.targetNR = target;
             yield return new WaitForSeconds(2.0f);
         }
     }
     public int NearestWall(Transform tp)
     {
+
         int nearest = 0;
-        float shortestDistance = 200000;
+        float shortestDistance = 200f;
         for (int i = 0; i < Walls.Length - 1; i++)
         {
             GameObject temp =Walls[i];
@@ -56,11 +62,12 @@ public class Game : MonoBehaviour {
             tempZ = Mathf.Pow(tempZ, 2);
             float distance = Mathf.Sqrt(tempX + tempZ);
             distance = Mathf.Abs(distance);
-            if (shortestDistance < distance)
+            if (shortestDistance > distance)
             {
                 shortestDistance = distance;
                 nearest = i;
             }
+            Debug.Log(nearest);
         }
         return nearest;
     }

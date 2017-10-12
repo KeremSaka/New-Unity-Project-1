@@ -38,11 +38,12 @@ public class MovePlayer : MonoBehaviour
 
     private void Update()
     {
-        if(pastDestination != _destination && _destination !=null)
+        if(pastDestination != _destination)
         {
-            SetDestinationNavMesh();
             pastDestination = _destination;
+            SetDestinationNavMesh();
         }
+      
     }
 
     private void SetDestinationNavMesh()
@@ -61,11 +62,13 @@ public class MovePlayer : MonoBehaviour
         {
             if (other.gameObject.tag == "Wall" && !enemyAnimation.attack)
             {
+                _navMeshAgent.enabled = false;
                 enemyAnimation.attack = true;
                 StartCoroutine(DamageWall());
             }
             if (other.gameObject.tag == "Destination")
             {
+                _navMeshAgent.enabled = false;
                 enemyAnimation.attack = true;
                 StartCoroutine(DamageWall());
             }
@@ -101,8 +104,7 @@ public class MovePlayer : MonoBehaviour
     public void setDestination(Transform destination)
     {
         _destination = destination;
-        pastDestination = _destination;
-        SetDestinationNavMesh();
+        
     }
 
     IEnumerator Death()
