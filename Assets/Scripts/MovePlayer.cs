@@ -45,6 +45,11 @@ public class MovePlayer : MonoBehaviour {
     private void OnTriggerEnter(Collider other){
         if (!dying)
         {
+            if(other.gameObject.tag == "Wall")
+            {
+                enemyAnimation.attack = true;
+
+            }
             if (other.gameObject.tag == "Destination")
             {
                 GameData.Instance.EnemyReachedDestination++;

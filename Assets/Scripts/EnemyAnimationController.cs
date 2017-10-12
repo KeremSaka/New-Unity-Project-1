@@ -8,6 +8,7 @@ public class EnemyAnimationController : MonoBehaviour {
     private int deathHash = Animator.StringToHash("Death");
     public bool getDamage = false;
     public bool isDead = false;
+    public bool attack = false;
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
