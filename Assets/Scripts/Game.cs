@@ -21,7 +21,7 @@ public class Game : MonoBehaviour {
     {
         for (int i = 0; i < number; i++)
         {
-            GameObject enemy = Instantiate(enemyPrefab, spawnpoint.position, spawnpoint.rotation);
+            GameObject enemy = Instantiate(enemyPrefab, spawnpoint, false);
             MovePlayer mp = enemy.GetComponent<MovePlayer>();
             mp.setDestination(destination);
             yield return new WaitForSeconds(3.0f);
