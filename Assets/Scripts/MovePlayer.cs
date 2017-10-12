@@ -16,31 +16,25 @@ public class MovePlayer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        GameData.Instance.Enemys[GameData.Instance.Enemyspointer++] = this.gameObject;
 		_navMeshAgent = this.GetComponent<NavMeshAgent> ();
 
 		if (_navMeshAgent == null) {
 			Debug.LogError ("Keine NavMesh");
 		} else {
-			SetDestination ();
+			SetDestinationNavMesh();
 		}
 
 	}
 	
-	private void SetDestination(){
-        if (!dying)
-        {
+	private void SetDestinationNavMesh(){
             if (_destination != null)
             {
                 Vector3 targetVector = _destination.transform.position;
                 _navMeshAgent.SetDestination(targetVector);
             }
-        }
+    
 	}
-
-    void Update()
-    {
-
-    }
 
     private void OnTriggerEnter(Collider other){
         if (!dying)
@@ -88,6 +82,7 @@ public class MovePlayer : MonoBehaviour {
     public void setDestination(Transform destination)
     {
         _destination = destination;
+        SetDestinationNavMesh();
     }
 
     IEnumerator Death()
@@ -97,4 +92,6 @@ public class MovePlayer : MonoBehaviour {
 
         Destroy(this.gameObject);
     }
+
+    
 }

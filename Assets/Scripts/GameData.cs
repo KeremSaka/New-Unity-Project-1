@@ -61,4 +61,23 @@ public class GameData
         get;
         set;
     }
+
+    public int Enemyspointer
+    {
+        get;
+        set;
+    }
+
+
+
+    public GameObject[] Enemys
+    {
+        get;
+        set;
+    }
+    public GameObject Tower
+    {
+        get;
+        set;
+    }
 }
