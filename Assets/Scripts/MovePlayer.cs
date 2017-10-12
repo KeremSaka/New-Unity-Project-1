@@ -9,6 +9,8 @@ public class MovePlayer : MonoBehaviour
     [SerializeField]
     Transform _destination;
 
+    private Transform pastDestination;
+
     NavMeshAgent _navMeshAgent;
 
     public Game game;
@@ -22,7 +24,7 @@ public class MovePlayer : MonoBehaviour
     void Start()
     {
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
-
+        pastDestination = _destination;
         if (_navMeshAgent == null)
         {
             Debug.LogError("Keine NavMesh");
@@ -31,7 +33,16 @@ public class MovePlayer : MonoBehaviour
         {
             SetDestinationNavMesh();
         }
-        StartCoroutine(Spawn());
+        //StartCoroutine(Spawn());
+    }
+
+    private void Update()
+    {
+        if(pastDestination != _destination && _destination !=null)
+        {
+            SetDestinationNavMesh();
+            pastDestination = _destination;
+        }
     }
 
     private void SetDestinationNavMesh()
@@ -90,6 +101,7 @@ public class MovePlayer : MonoBehaviour
     public void setDestination(Transform destination)
     {
         _destination = destination;
+        pastDestination = _destination;
         SetDestinationNavMesh();
     }
 

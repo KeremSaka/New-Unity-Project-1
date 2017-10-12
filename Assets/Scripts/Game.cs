@@ -14,8 +14,9 @@ public class Game : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         GameData.Instance.MaxEnemyNumber = (GameData.Instance.LevelNumber + 1) * 10;
-        StartCoroutine(SpawnEnemys(GameData.Instance.MaxEnemyNumber));
+        
         Enemys = new MovePlayer[GameData.Instance.MaxEnemyNumber];
+        StartCoroutine(SpawnEnemys(GameData.Instance.MaxEnemyNumber));
         WallHealth = new float[Walls.Length];
         for(int i = 0; i< Walls.Length; i++)
         {
@@ -35,11 +36,11 @@ public class Game : MonoBehaviour {
             GameObject enemy = Instantiate(enemyPrefab, spawnpoint[Random.Range(0, spawnpoint.Length - 1)], false);
             MovePlayer mp = enemy.GetComponent<MovePlayer>();
             Enemys[i] = mp;
-            int target = NearestWall(enemy.transform);
-            mp.setDestination(Walls[target].transform);
-            mp.game = this;
-            mp.targetNR = target;
-            yield return new WaitForSeconds(3.0f);
+            //int target = NearestWall(enemy.transform);
+            mp.setDestination(Tower);
+            mp.game = this.gameObject.GetComponent<Game>();
+            //mp.targetNR = target;
+            yield return new WaitForSeconds(2.0f);
         }
     }
     public int NearestWall(Transform tp)
@@ -55,7 +56,7 @@ public class Game : MonoBehaviour {
             tempZ = Mathf.Pow(tempZ, 2);
             float distance = Mathf.Sqrt(tempX + tempZ);
             distance = Mathf.Abs(distance);
-            if (shortestDistance > distance)
+            if (shortestDistance < distance)
             {
                 shortestDistance = distance;
                 nearest = i;
