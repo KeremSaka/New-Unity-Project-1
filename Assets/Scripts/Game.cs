@@ -1,17 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class Game : MonoBehaviour {
-    public GameObject enemyPrefab;
+
+
     public Transform[] spawnpoint;
     public Transform destination;
     public Transform Tower;
+
+    public GameObject enemyPrefab;
     public GameObject[] Walls;
+
     public MovePlayer[] Enemys;
+
     public float[] WallHealth;
     public float TowerHealth = 100;
+
     public int MaxEnemyNumber = 10;
+
+    public NavMeshSurface meshSurface;
+
 	// Use this for initialization
 	void Start () {
         GameData.Instance.MaxEnemyNumber = (GameData.Instance.LevelNumber + 1) * 10;
@@ -41,12 +50,17 @@ public class Game : MonoBehaviour {
            
             Enemys[i] = mp;
             int target = NearestWall(spawnpoint[temp]);
-            Debug.Log(target);
+
             mp.setDestination(Walls[target].transform);
             mp.game = this;
             mp.targetNR = target;
+
+            meshSurface.BuildNavMesh();
             yield return new WaitForSeconds(2.0f);
+
         }
+
+        setTowerDestination();
     }
     public int NearestWall(Transform tp)
     {
@@ -67,7 +81,6 @@ public class Game : MonoBehaviour {
                 shortestDistance = distance;
                 nearest = i;
             }
-            Debug.Log(nearest);
         }
         return nearest;
     }

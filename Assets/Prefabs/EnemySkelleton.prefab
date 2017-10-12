@@ -1273,7 +1273,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destination: {fileID: 0}
+  game: {fileID: 0}
+  damage: 10
   enemyAnimation: {fileID: 114681588627078374}
+  wallAlive: 1
+  targetNR: 0
 --- !u!114 &114681588627078374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1287,6 +1291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   getDamage: 0
   isDead: 0
+  attack: 0
 --- !u!137 &137173753890338044
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1418,7 +1423,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1378606534143426}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
