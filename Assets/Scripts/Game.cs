@@ -6,9 +6,11 @@ public class Game : MonoBehaviour {
     public GameObject enemyPrefab;
     public Transform[] spawnpoint;
     public Transform destination;
+    public Transform Tower;
     public GameObject[] Walls;
     private MovePlayer[] Enemys;
     public float[] WallHealth;
+    public float TowerHealth = 100;
 	// Use this for initialization
 	void Start () {
         GameData.Instance.MaxEnemyNumber = (GameData.Instance.LevelNumber + 1) * 10;
@@ -73,6 +75,19 @@ public class Game : MonoBehaviour {
     public float setDamageToWall(int target, float damage)
     {
         WallHealth[target] -= damage;
+        if(WallHealth[target] <= 0)
+        {
+            setTowerDestination();
+        }
         return WallHealth[target];
+    }
+
+
+    private void setTowerDestination()
+    {
+        for(int i = 0; i< Enemys.Length; i++)
+        {
+            Enemys[i].setDestination(Tower);
+        }
     }
 }

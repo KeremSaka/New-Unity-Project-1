@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MovePlayer : MonoBehaviour {
+public class MovePlayer : MonoBehaviour
+{
 
-	[SerializeField]
-	Transform _destination;
+    [SerializeField]
+    Transform _destination;
 
-	NavMeshAgent _navMeshAgent;
+    NavMeshAgent _navMeshAgent;
 
     public Game game;
     private float health = 10f;
@@ -17,39 +18,45 @@ public class MovePlayer : MonoBehaviour {
     private bool dying = false;
     public bool wallAlive = true;
     public int targetNR;
-	// Use this for initialization
-	void Start () {
-		_navMeshAgent = this.GetComponent<NavMeshAgent> ();
+    // Use this for initialization
+    void Start()
+    {
+        _navMeshAgent = this.GetComponent<NavMeshAgent>();
 
-		if (_navMeshAgent == null) {
-			Debug.LogError ("Keine NavMesh");
-		} else {
-			SetDestinationNavMesh();
-		}
+        if (_navMeshAgent == null)
+        {
+            Debug.LogError("Keine NavMesh");
+        }
+        else
+        {
+            SetDestinationNavMesh();
+        }
+        StartCoroutine(Spawn());
+    }
 
-	}
-	
-	private void SetDestinationNavMesh(){
-            if (_destination != null)
-            {
-                Vector3 targetVector = _destination.transform.position;
-                _navMeshAgent.SetDestination(targetVector);
-            }
-    
-	}
+    private void SetDestinationNavMesh()
+    {
+        if (_destination != null)
+        {
+            Vector3 targetVector = _destination.transform.position;
+            _navMeshAgent.SetDestination(targetVector);
+        }
 
-    private void OnTriggerEnter(Collider other){
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
         if (!dying)
         {
-            if(other.gameObject.tag == "Wall" && !enemyAnimation.attack)
+            if (other.gameObject.tag == "Wall" && !enemyAnimation.attack)
             {
                 enemyAnimation.attack = true;
                 StartCoroutine(DamageWall());
             }
             if (other.gameObject.tag == "Destination")
             {
-                GameData.Instance.EnemyReachedDestination++;
-                Destroy(this.gameObject);
+                enemyAnimation.attack = true;
+                StartCoroutine(DamageWall());
             }
 
             if (other.gameObject.tag == "Bullet")
@@ -74,7 +81,7 @@ public class MovePlayer : MonoBehaviour {
     public void decreaseHealth(float damage)
     {
         health -= damage;
-        if(enemyAnimation != null)
+        if (enemyAnimation != null)
         {
             enemyAnimation.getDamage = true;
         }
@@ -96,15 +103,26 @@ public class MovePlayer : MonoBehaviour {
 
     IEnumerator DamageWall()
     {
-        while (wallAlive && !dying) { 
+        while (wallAlive && !dying)
+        {
             yield return new WaitForSeconds(2.2f);
-            if(game.setDamageToWall(targetNR, damage)<= 0)
+            if (game.setDamageToWall(targetNR, damage) <= 0)
             {
                 wallAlive = false;
 
             }
         }
+        while (!dying && game.TowerHealth <= 0)
+        {
+            yield return new WaitForSeconds(2.2f);
+            game.TowerHealth -= damage;
+        }
 
     }
-    
+    IEnumerator Spawn()
+    {
+        _navMeshAgent.enabled = false;
+        yield return new WaitForSeconds(1.05f);
+        _navMeshAgent.enabled = true;
+    }
 }
