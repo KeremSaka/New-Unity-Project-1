@@ -7,10 +7,18 @@ public class Game : MonoBehaviour {
     public Transform[] spawnpoint;
     public Transform destination;
     public GameObject[] Walls;
+    private MovePlayer[] Enemys;
+    public float[] WallHealth;
 	// Use this for initialization
 	void Start () {
         GameData.Instance.MaxEnemyNumber = (GameData.Instance.LevelNumber + 1) * 10;
         StartCoroutine(SpawnEnemys(GameData.Instance.MaxEnemyNumber));
+        Enemys = new MovePlayer[GameData.Instance.MaxEnemyNumber];
+        WallHealth = new float[Walls.Length];
+        for(int i = 0; i< Walls.Length; i++)
+        {
+            WallHealth[i] = 100f;
+        }
 	}
 	
 	// Update is called once per frame
@@ -24,7 +32,11 @@ public class Game : MonoBehaviour {
         {
             GameObject enemy = Instantiate(enemyPrefab, spawnpoint[Random.Range(0, spawnpoint.Length - 1)], false);
             MovePlayer mp = enemy.GetComponent<MovePlayer>();
-            mp.setDestination(Walls[NearestWall(enemy.transform)].transform);
+            Enemys[i] = mp;
+            int target = NearestWall(enemy.transform);
+            mp.setDestination(Walls[target].transform);
+            mp.game = this;
+            mp.targetNR = target;
             yield return new WaitForSeconds(3.0f);
         }
     }
@@ -56,5 +68,11 @@ public class Game : MonoBehaviour {
         GUI.Box(new Rect(Screen.width - 150, 40, 150, 50), "Max Enemy Number: " + GameData.Instance.MaxEnemyNumber);
         GUI.Box(new Rect(Screen.width - 150, 60, 150, 50), "Number Of Tower: " + GameData.Instance.NumberOfTowers);
         GUI.Box(new Rect(Screen.width - 150, 80, 150, 50), "Current Level: " + (GameData.Instance.LevelNumber +1));
+    }
+
+    public float setDamageToWall(int target, float damage)
+    {
+        WallHealth[target] -= damage;
+        return WallHealth[target];
     }
 }

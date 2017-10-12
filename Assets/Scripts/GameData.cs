@@ -68,16 +68,4 @@ public class GameData
         set;
     }
 
-
-
-    public GameObject[] Enemys
-    {
-        get;
-        set;
-    }
-    public GameObject Tower
-    {
-        get;
-        set;
-    }
 }

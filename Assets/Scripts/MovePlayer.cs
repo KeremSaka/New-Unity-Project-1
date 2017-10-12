@@ -10,13 +10,15 @@ public class MovePlayer : MonoBehaviour {
 
 	NavMeshAgent _navMeshAgent;
 
+    public Game game;
     private float health = 10f;
+    public float damage = 10f;
     public EnemyAnimationController enemyAnimation;
     private bool dying = false;
+    public bool wallAlive = true;
+    public int targetNR;
 	// Use this for initialization
 	void Start () {
-
-        GameData.Instance.Enemys[GameData.Instance.Enemyspointer++] = this.gameObject;
 		_navMeshAgent = this.GetComponent<NavMeshAgent> ();
 
 		if (_navMeshAgent == null) {
@@ -39,15 +41,14 @@ public class MovePlayer : MonoBehaviour {
     private void OnTriggerEnter(Collider other){
         if (!dying)
         {
-            if(other.gameObject.tag == "Wall")
+            if(other.gameObject.tag == "Wall" && !enemyAnimation.attack)
             {
                 enemyAnimation.attack = true;
-
+                StartCoroutine(DamageWall());
             }
             if (other.gameObject.tag == "Destination")
             {
                 GameData.Instance.EnemyReachedDestination++;
-
                 Destroy(this.gameObject);
             }
 
@@ -60,7 +61,6 @@ public class MovePlayer : MonoBehaviour {
                 if (health <= 0)
                 {
                     GameData.Instance.EnemyKilled++;
-
                     enemyAnimation.isDead = true;
                     StartCoroutine(Death());
                 }
@@ -69,6 +69,7 @@ public class MovePlayer : MonoBehaviour {
         }
 
     }
+
 
     public void decreaseHealth(float damage)
     {
@@ -93,5 +94,17 @@ public class MovePlayer : MonoBehaviour {
         Destroy(this.gameObject);
     }
 
+    IEnumerator DamageWall()
+    {
+        while (wallAlive && !dying) { 
+            yield return new WaitForSeconds(2.2f);
+            if(game.setDamageToWall(targetNR, damage)<= 0)
+            {
+                wallAlive = false;
+
+            }
+        }
+
+    }
     
 }
