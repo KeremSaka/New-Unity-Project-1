@@ -36,8 +36,8 @@ public class Game : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        meshSurface.BuildNavMesh();
+    }
 
     IEnumerator SpawnEnemys(int number)
     {
@@ -120,6 +120,7 @@ public class Game : MonoBehaviour {
                 Destroy(Walls[target + 1].gameObject);
                 Walls[target + 1] = null;
             }
+            meshSurface.BuildNavMesh();
             setTowerDestination();
         }
         return WallHealth[target];
@@ -130,9 +131,10 @@ public class Game : MonoBehaviour {
     {
         for (int i = 0; i< Enemys.Length; i++)
         {
+            Enemys[i].wallAlive = false;
             Enemys[i].setDestination(Tower);
             Enemys[i].EnableNavMesh();
         }
-        meshSurface.BuildNavMesh();
+        
     }
 }
