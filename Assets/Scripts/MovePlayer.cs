@@ -18,6 +18,7 @@ public class MovePlayer : MonoBehaviour
     public float damage = 10f;
     public EnemyAnimationController enemyAnimation;
     private bool dying = false;
+    private bool spawn = false;
     public bool wallAlive = true;
     public int targetNR;
     // Use this for initialization
@@ -33,13 +34,16 @@ public class MovePlayer : MonoBehaviour
         {
             //SetDestinationNavMesh();
         }
-        //StartCoroutine(Spawn());
+        StartCoroutine(Spawn());
     }
 
     private void Update()
     {
-        if(pastDestination != _destination)
+        if(pastDestination != _destination && !spawn)
         {
+            _navMeshAgent.enabled = true;
+            enemyAnimation.attack = false;
+            enemyAnimation.run = true;
             pastDestination = _destination;
             SetDestinationNavMesh();
         }
@@ -50,6 +54,7 @@ public class MovePlayer : MonoBehaviour
     {
         if (_destination != null)
         {
+
             Vector3 targetVector = _destination.transform.position;
             _navMeshAgent.SetDestination(targetVector);
         }
@@ -58,17 +63,21 @@ public class MovePlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log(other.gameObject.tag);
         if (!dying)
         {
-            if (other.gameObject.tag == "Wall" && !enemyAnimation.attack)
+            
+            if (other.gameObject.tag == "Wall" && wallAlive)
             {
                 _navMeshAgent.enabled = false;
+                enemyAnimation.run = false;
                 enemyAnimation.attack = true;
                 StartCoroutine(DamageWall());
             }
             if (other.gameObject.tag == "Destination")
             {
                 _navMeshAgent.enabled = false;
+                enemyAnimation.run = false;
                 enemyAnimation.attack = true;
                 StartCoroutine(DamageWall());
             }
@@ -77,7 +86,7 @@ public class MovePlayer : MonoBehaviour
             {
                 ProjectileMovement projectile = other.gameObject.GetComponent<ProjectileMovement>();
                 decreaseHealth(projectile.getDamage());
-                Debug.Log(health);
+
                 Destroy(other.gameObject);
                 if (health <= 0)
                 {
@@ -136,7 +145,18 @@ public class MovePlayer : MonoBehaviour
     IEnumerator Spawn()
     {
         _navMeshAgent.enabled = false;
+        spawn = true;
+        rotateTowards(_destination.position.x, _destination.position.z);
         yield return new WaitForSeconds(1.05f);
-        _navMeshAgent.enabled = true;
+        spawn = false;
+    }
+
+    private void rotateTowards(float targetX, float targetZ)
+    {
+        float x = targetX - transform.position.x;
+        float z = targetZ - transform.position.z;
+        Vector3 relativPos = new Vector3(x, 0, z);//new direction of the object
+        Quaternion destRotation = Quaternion.LookRotation(relativPos);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, destRotation, 100);
     }
 }

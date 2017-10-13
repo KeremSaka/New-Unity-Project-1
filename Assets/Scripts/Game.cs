@@ -6,7 +6,6 @@ public class Game : MonoBehaviour {
 
 
     public Transform[] spawnpoint;
-    public Transform destination;
     public Transform Tower;
 
     public GameObject enemyPrefab;
@@ -17,7 +16,7 @@ public class Game : MonoBehaviour {
     public float[] WallHealth;
     public float TowerHealth = 100;
 
-    public int MaxEnemyNumber = 10;
+    public int MaxEnemyNumber = 1;
 
     public NavMeshSurface meshSurface;
 
@@ -26,11 +25,12 @@ public class Game : MonoBehaviour {
         GameData.Instance.MaxEnemyNumber = (GameData.Instance.LevelNumber + 1) * 10;
         meshSurface.BuildNavMesh();
         Enemys = new MovePlayer[MaxEnemyNumber];
+        Debug.Log(MaxEnemyNumber);
         StartCoroutine(SpawnEnemys(MaxEnemyNumber));
         WallHealth = new float[Walls.Length];
         for(int i = 0; i< Walls.Length; i++)
         {
-            WallHealth[i] = 100f;
+            WallHealth[i] = 1000f;
         }
 	}
 	
@@ -46,22 +46,18 @@ public class Game : MonoBehaviour {
             meshSurface.BuildNavMesh();
             int temp = Random.Range(0, spawnpoint.Length - 1);
             GameObject enemy = Instantiate(enemyPrefab, spawnpoint[temp], false);
+            //enemy.transform.localScale = new Vector3(3f, 3f, 3f);
             MovePlayer mp = enemy.GetComponent<MovePlayer>();
-
-           
             Enemys[i] = mp;
             int target = NearestWall(spawnpoint[temp]);
-
             mp.setDestination(Walls[target].transform);
             mp.game = this;
             mp.targetNR = target;
 
-
             yield return new WaitForSeconds(2.0f);
 
         }
-
-        setTowerDestination();
+        
     }
     public int NearestWall(Transform tp)
     {
@@ -97,9 +93,10 @@ public class Game : MonoBehaviour {
     public float setDamageToWall(int target, float damage)
     {
         WallHealth[target] -= damage;
+        Debug.Log(target + "wall number, health=" + WallHealth[target]);
         if(WallHealth[target] <= 0)
         {
-            setTowerDestination();
+            //setTowerDestination();
         }
         return WallHealth[target];
     }
