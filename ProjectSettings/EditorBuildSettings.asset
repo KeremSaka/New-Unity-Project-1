@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TerrainTest.unity
     guid: d9551f605eecf3a419e780930543388d
+  - enabled: 0
+    path: Assets/PervertJR.unity
+    guid: 3bf6e4fd39699184a9210b1e7a96cad2
