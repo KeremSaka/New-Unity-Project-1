@@ -6,9 +6,12 @@ public class EnemyAnimationController : MonoBehaviour {
     private Animator anim;
     private int damageHash = Animator.StringToHash("Damage");
     private int deathHash = Animator.StringToHash("Death");
+    private int attackHash = Animator.StringToHash("Attack");
+    private int runHash = Animator.StringToHash("Run");
     public bool getDamage = false;
     public bool isDead = false;
     public bool attack = false;
+    public bool run = false;
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
@@ -16,7 +19,14 @@ public class EnemyAnimationController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (run && !attack)
+        {
+            anim.SetTrigger(runHash);
+            if (isDead)
+            {
+                anim.SetTrigger(deathHash);
+            }
+        }
       
 
         if (getDamage)
@@ -29,8 +39,13 @@ public class EnemyAnimationController : MonoBehaviour {
             }
 
         }
-		
-	}
+        if (attack)
+        {
+            anim.SetTrigger(attackHash);
+
+        }
+        
+    }
 
 
 }
