@@ -24,7 +24,7 @@ public class Game : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         GameData.Instance.MaxEnemyNumber = (GameData.Instance.LevelNumber + 1) * 10;
-        
+        meshSurface.BuildNavMesh();
         Enemys = new MovePlayer[MaxEnemyNumber];
         StartCoroutine(SpawnEnemys(MaxEnemyNumber));
         WallHealth = new float[Walls.Length];
@@ -43,6 +43,7 @@ public class Game : MonoBehaviour {
     {
         for (int i = 0; i < number; i++)
         {
+            meshSurface.BuildNavMesh();
             int temp = Random.Range(0, spawnpoint.Length - 1);
             GameObject enemy = Instantiate(enemyPrefab, spawnpoint[temp], false);
             MovePlayer mp = enemy.GetComponent<MovePlayer>();
@@ -55,7 +56,7 @@ public class Game : MonoBehaviour {
             mp.game = this;
             mp.targetNR = target;
 
-            meshSurface.BuildNavMesh();
+
             yield return new WaitForSeconds(2.0f);
 
         }
