@@ -16,9 +16,10 @@ public class MovePlayer : MonoBehaviour
     public Game game;
     private float health = 10f;
     public float damage = 10f;
-    public EnemyAnimationController enemyAnimation;
     private bool dying = false;
     private bool spawn = false;
+    private bool animAttack = false;
+    private bool animRun = false;
     public bool wallAlive = true;
     public int targetNR;
     // Use this for initialization
@@ -41,9 +42,8 @@ public class MovePlayer : MonoBehaviour
     {
         if(pastDestination != _destination && !spawn)
         {
-            _navMeshAgent.enabled = true;
-            enemyAnimation.attack = false;
-            enemyAnimation.run = true;
+            animAttack = false;
+            animRun = true;
             pastDestination = _destination;
             SetDestinationNavMesh();
         }
@@ -70,15 +70,15 @@ public class MovePlayer : MonoBehaviour
             if (other.gameObject.tag == "Wall" && wallAlive)
             {
                 _navMeshAgent.enabled = false;
-                enemyAnimation.run = false;
-                enemyAnimation.attack = true;
+                animRun = false;
+                animAttack = true;
                 StartCoroutine(DamageWall());
             }
             if (other.gameObject.tag == "Destination")
             {
                 _navMeshAgent.enabled = false;
-                enemyAnimation.run = false;
-                enemyAnimation.attack = true;
+                animRun = false;
+                animAttack = true;
                 StartCoroutine(DamageWall());
             }
 
@@ -90,8 +90,9 @@ public class MovePlayer : MonoBehaviour
                 Destroy(other.gameObject);
                 if (health <= 0)
                 {
+
                     GameData.Instance.EnemyKilled++;
-                    enemyAnimation.isDead = true;
+                    dying = true;
                     StartCoroutine(Death());
                 }
 
@@ -104,10 +105,7 @@ public class MovePlayer : MonoBehaviour
     public void decreaseHealth(float damage)
     {
         health -= damage;
-        if (enemyAnimation != null)
-        {
-            enemyAnimation.getDamage = true;
-        }
+     
     }
 
     public void setDestination(Transform destination)
@@ -118,9 +116,11 @@ public class MovePlayer : MonoBehaviour
 
     IEnumerator Death()
     {
+        animAttack = false;
+        animRun = false;
         _navMeshAgent.enabled = false;
-        yield return new WaitForSeconds(2.5f);
-
+        yield return new WaitForSeconds(1.3f);
+        
         Destroy(this.gameObject);
     }
 
@@ -128,7 +128,7 @@ public class MovePlayer : MonoBehaviour
     {
         while (wallAlive && !dying)
         {
-            yield return new WaitForSeconds(2.2f);
+            yield return new WaitForSeconds(1.4f);
             if (game.setDamageToWall(targetNR, damage) <= 0)
             {
                 wallAlive = false;
@@ -137,7 +137,7 @@ public class MovePlayer : MonoBehaviour
         }
         while (!dying && game.TowerHealth <= 0)
         {
-            yield return new WaitForSeconds(2.2f);
+            yield return new WaitForSeconds(1.4f);
             game.TowerHealth -= damage;
         }
 
@@ -147,8 +147,11 @@ public class MovePlayer : MonoBehaviour
         _navMeshAgent.enabled = false;
         spawn = true;
         rotateTowards(_destination.position.x, _destination.position.z);
-        yield return new WaitForSeconds(1.05f);
+        yield return new WaitForSeconds(1.8f);
         spawn = false;
+        animRun = true;
+
+        _navMeshAgent.enabled = true;
     }
 
     private void rotateTowards(float targetX, float targetZ)
@@ -158,5 +161,21 @@ public class MovePlayer : MonoBehaviour
         Vector3 relativPos = new Vector3(x, 0, z);//new direction of the object
         Quaternion destRotation = Quaternion.LookRotation(relativPos);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, destRotation, 100);
+    }
+    public bool getAttack()
+    {
+        return animAttack;
+    }
+    public bool getRun()
+    {
+        return animRun;
+    }
+    public bool getDying()
+    {
+        return dying;
+    }
+    public float getHealth()
+    {
+        return health;
     }
 }

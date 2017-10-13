@@ -3345,7 +3345,7 @@ MonoBehaviour:
   - {fileID: 903141699}
   - {fileID: 830636846}
   Tower: {fileID: 1993209266}
-  enemyPrefab: {fileID: 1378606534143426, guid: a88d4c32cf7af7841871207c95f7437b,
+  enemyPrefab: {fileID: 1393018191671600, guid: 93353c7c1020c1c42a9ac173aae47cc4,
     type: 2}
   Walls:
   - {fileID: 1993209265}
@@ -3371,7 +3371,7 @@ MonoBehaviour:
   Enemys: []
   WallHealth: []
   TowerHealth: 100
-  MaxEnemyNumber: 10
+  MaxEnemyNumber: 1
   meshSurface: {fileID: 1863824518}
 --- !u!1 &1090638990
 GameObject:

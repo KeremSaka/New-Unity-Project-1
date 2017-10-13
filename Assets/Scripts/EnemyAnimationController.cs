@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyAnimationController : MonoBehaviour {
     private Animator anim;
+    public MovePlayer enemy;
     private int damageHash = Animator.StringToHash("Damage");
     private int deathHash = Animator.StringToHash("Death");
     private int attackHash = Animator.StringToHash("Attack");
