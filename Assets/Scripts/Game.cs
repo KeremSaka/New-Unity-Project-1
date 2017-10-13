@@ -30,7 +30,7 @@ public class Game : MonoBehaviour {
         WallHealth = new float[Walls.Length];
         for(int i = 0; i< Walls.Length; i++)
         {
-            WallHealth[i] = 1000f;
+            WallHealth[i] = 500f;
         }
 	}
 	
@@ -93,10 +93,34 @@ public class Game : MonoBehaviour {
     public float setDamageToWall(int target, float damage)
     {
         WallHealth[target] -= damage;
-        Debug.Log(target + "wall number, health=" + WallHealth[target]);
         if(WallHealth[target] <= 0)
         {
-            //setTowerDestination();
+            
+            Destroy(Walls[target].gameObject);
+            Walls[target] = null;
+            if(target == 0)
+            {
+                int temp = Walls.Length - 1;
+                Destroy(Walls[temp].gameObject);
+                Walls[temp] = null;
+            }
+            else
+            {
+                Destroy(Walls[target-1].gameObject);
+                Walls[target-1] = null;
+            }
+            if (target == Walls.Length - 1)
+            {
+                int temp = 0;
+                Destroy(Walls[temp].gameObject);
+                Walls[temp] = null;
+            }
+            else
+            {
+                Destroy(Walls[target + 1].gameObject);
+                Walls[target + 1] = null;
+            }
+            setTowerDestination();
         }
         return WallHealth[target];
     }
@@ -104,9 +128,11 @@ public class Game : MonoBehaviour {
 
     private void setTowerDestination()
     {
-        for(int i = 0; i< Enemys.Length; i++)
+        for (int i = 0; i< Enemys.Length; i++)
         {
             Enemys[i].setDestination(Tower);
+            Enemys[i].EnableNavMesh();
         }
+        meshSurface.BuildNavMesh();
     }
 }

@@ -113,7 +113,10 @@ public class MovePlayer : MonoBehaviour
         _destination = destination;
         
     }
-
+    public void EnableNavMesh()
+    {
+        _navMeshAgent.enabled = true;
+    }
     IEnumerator Death()
     {
         animAttack = false;
