@@ -210,7 +210,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384a0d8cc71cef74a873b3353337ea2c, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3300000, guid: 384a0d8cc71cef74a873b3353337ea2c, type: 2}
       propertyPath: m_Mesh
@@ -294,6 +294,38 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 54de0056add43d44cabf4bc883dcf0dc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: aa7c79192b1cc6549a6bfabe92b25ece, type: 2}
+    - target: {fileID: 2300002, guid: 54de0056add43d44cabf4bc883dcf0dc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d84bfb2d57a83ae4b9efbf0b4d8c5739, type: 2}
+    - target: {fileID: 2300004, guid: 54de0056add43d44cabf4bc883dcf0dc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3cc7b4ec21f1b774da56879496ea1a0e, type: 2}
+    - target: {fileID: 2300006, guid: 54de0056add43d44cabf4bc883dcf0dc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eb845f578f8cdd24187164de372a117e, type: 2}
+    - target: {fileID: 2300010, guid: 54de0056add43d44cabf4bc883dcf0dc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 48982fd9309e5374384331474da02bb4, type: 2}
+    - target: {fileID: 2300012, guid: 54de0056add43d44cabf4bc883dcf0dc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ae8d086ad01207459c98441c913ab28, type: 2}
+    - target: {fileID: 2300008, guid: 54de0056add43d44cabf4bc883dcf0dc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d92372284440fef4ea337816ae62ec1a, type: 2}
+    - target: {fileID: 2300014, guid: 54de0056add43d44cabf4bc883dcf0dc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c725edcd46298544587df70491041b43, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 54de0056add43d44cabf4bc883dcf0dc, type: 3}
   m_IsPrefabParent: 0
