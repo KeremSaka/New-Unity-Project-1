@@ -1810,6 +1810,7 @@ MonoBehaviour:
   damage: 10
   wallAlive: 1
   targetNR: 0
+  ID: 0
 --- !u!136 &136845743568618610
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2031,7 +2032,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1393018191671600}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.3
+  m_Radius: 0.1
   m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
