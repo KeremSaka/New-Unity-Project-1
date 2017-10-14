@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class NetworkPlayer : Photon.MonoBehaviour {
 
-	public GameObject camera;
 	private Vector3 correctPlayerPos;
 	private Quaternion correctPlayerRot;
 
 	// Use this for initialization
 	void Start () {
 		if (photonView.isMine) {
-			camera.SetActive(true);
 			GetComponent<PlayerMovement> ().enabled = true;
 		}
 	}
