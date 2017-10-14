@@ -8,9 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Main.unity
     guid: 3df199a131843b344b9bec91be614006
-  - enabled: 1
+  - enabled: 0
     path: Assets/TerrainTest.unity
     guid: d9551f605eecf3a419e780930543388d
   - enabled: 0
     path: 
     guid: 3bf6e4fd39699184a9210b1e7a96cad2
+  - enabled: 0
+    path: Assets/Photon Unity Networking/Demos/Demo2DJumpAndRunWithPhysics/Demo2DJumpAndRunWithPhysics-Scene.unity
+    guid: 2cd8533503c3ea649b6c543c6126c811
+  - enabled: 1
+    path: Assets/NetworkConnectionTest.unity
+    guid: 642543ab8d2c24c47946fae289ad4729
