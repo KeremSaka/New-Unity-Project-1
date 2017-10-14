@@ -22,6 +22,7 @@ public class MovePlayer : MonoBehaviour
     private bool animRun = false;
     public bool wallAlive = true;
     public int targetNR;
+    public int ID;
     // Use this for initialization
     void Start()
     {
@@ -47,7 +48,8 @@ public class MovePlayer : MonoBehaviour
             pastDestination = _destination;
             SetDestinationNavMesh();
         }
-      
+        //_navMeshAgent.CalculatePath(_destination.position, _navMeshAgent.path);
+
     }
 
     private void SetDestinationNavMesh()
@@ -57,6 +59,7 @@ public class MovePlayer : MonoBehaviour
 
             Vector3 targetVector = _destination.transform.position;
             _navMeshAgent.SetDestination(targetVector);
+            Debug.Log(_navMeshAgent.pathStatus + "Enemy ID" + ID);
         }
 
     }
@@ -69,14 +72,16 @@ public class MovePlayer : MonoBehaviour
             
             if (other.gameObject.tag == "Wall" && wallAlive)
             {
-                _navMeshAgent.enabled = false;
+                //_navMeshAgent.enabled = false;
+                _navMeshAgent.isStopped = true;
                 animRun = false;
                 animAttack = true;
                 StartCoroutine(DamageWall());
             }
             if (other.gameObject.tag == "Destination")
             {
-                _navMeshAgent.enabled = false;
+                //_navMeshAgent.enabled = false;
+                _navMeshAgent.isStopped = true;
                 animRun = false;
                 animAttack = true;
                 StartCoroutine(DamageWall());
@@ -115,13 +120,15 @@ public class MovePlayer : MonoBehaviour
     }
     public void EnableNavMesh()
     {
-        _navMeshAgent.enabled = true;
+        //_navMeshAgent.enabled = true;
+        _navMeshAgent.isStopped = false;
     }
     IEnumerator Death()
     {
         animAttack = false;
         animRun = false;
-        _navMeshAgent.enabled = false;
+        //_navMeshAgent.enabled = false;
+        _navMeshAgent.isStopped = true;
         yield return new WaitForSeconds(1.3f);
         
         Destroy(this.gameObject);
@@ -135,7 +142,7 @@ public class MovePlayer : MonoBehaviour
             if (game.setDamageToWall(targetNR, damage) <= 0)
             {
                 wallAlive = false;
-
+                
             }
         }
         while (!dying && game.TowerHealth <= 0)
@@ -147,14 +154,16 @@ public class MovePlayer : MonoBehaviour
     }
     IEnumerator Spawn()
     {
-        _navMeshAgent.enabled = false;
+        //_navMeshAgent.enabled = false;
+        _navMeshAgent.isStopped = true;
         spawn = true;
         rotateTowards(_destination.position.x, _destination.position.z);
         yield return new WaitForSeconds(1.8f);
         spawn = false;
         animRun = true;
 
-        _navMeshAgent.enabled = true;
+        //_navMeshAgent.enabled = true;
+        _navMeshAgent.isStopped = false;
     }
 
     private void rotateTowards(float targetX, float targetZ)

@@ -25,7 +25,7 @@ public class Game : MonoBehaviour {
         GameData.Instance.MaxEnemyNumber = (GameData.Instance.LevelNumber + 1) * 10;
         meshSurface.BuildNavMesh();
         Enemys = new MovePlayer[MaxEnemyNumber];
-        Debug.Log(MaxEnemyNumber);
+    
         StartCoroutine(SpawnEnemys(MaxEnemyNumber));
         WallHealth = new float[Walls.Length];
         for(int i = 0; i< Walls.Length; i++)
@@ -48,6 +48,7 @@ public class Game : MonoBehaviour {
             GameObject enemy = Instantiate(enemyPrefab, spawnpoint[temp], false);
             //enemy.transform.localScale = new Vector3(3f, 3f, 3f);
             MovePlayer mp = enemy.GetComponent<MovePlayer>();
+            mp.ID = i;
             Enemys[i] = mp;
             int target = NearestWall(spawnpoint[temp]);
             mp.setDestination(Walls[target].transform);
@@ -93,7 +94,7 @@ public class Game : MonoBehaviour {
     public float setDamageToWall(int target, float damage)
     {
         WallHealth[target] -= damage;
-        if(WallHealth[target] <= 0)
+        if(WallHealth[target] <= 0 && Walls[target]!=null)
         {
             
             Destroy(Walls[target].gameObject);
@@ -101,24 +102,35 @@ public class Game : MonoBehaviour {
             if(target == 0)
             {
                 int temp = Walls.Length - 1;
-                Destroy(Walls[temp].gameObject);
-                Walls[temp] = null;
+                if (Walls[temp] != null)
+                {
+                    Destroy(Walls[temp].gameObject);
+                    Walls[temp] = null;
+                }
             }
             else
             {
-                Destroy(Walls[target-1].gameObject);
-                Walls[target-1] = null;
+                if (Walls[target-1] != null)
+                {
+                    Destroy(Walls[target - 1].gameObject);
+                    Walls[target - 1] = null;
+                }
             }
             if (target == Walls.Length - 1)
             {
-                int temp = 0;
-                Destroy(Walls[temp].gameObject);
-                Walls[temp] = null;
+                if (Walls[0] != null)
+                {
+                    Destroy(Walls[0].gameObject);
+                    Walls[0] = null;
+                }
             }
             else
             {
-                Destroy(Walls[target + 1].gameObject);
-                Walls[target + 1] = null;
+                if (Walls[target+1] != null)
+                {
+                    Destroy(Walls[target + 1].gameObject);
+                    Walls[target + 1] = null;
+                }
             }
             meshSurface.BuildNavMesh();
             setTowerDestination();
