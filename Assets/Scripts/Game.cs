@@ -51,10 +51,11 @@ public class Game : MonoBehaviour {
             mp.ID = i;
             Enemys[i] = mp;
             int target = NearestWall(spawnpoint[temp]);
-            mp.setDestination(Walls[target].transform);
+            
             mp.game = this;
             mp.targetNR = target;
-
+            mp.meshS = meshSurface;
+            mp.setDestination(Walls[target].transform);
             yield return new WaitForSeconds(2.0f);
 
         }

@@ -23,6 +23,7 @@ public class MovePlayer : MonoBehaviour
     public bool wallAlive = true;
     public int targetNR;
     public int ID;
+    public NavMeshSurface meshS;
     // Use this for initialization
     void Start()
     {
@@ -41,14 +42,6 @@ public class MovePlayer : MonoBehaviour
 
     private void Update()
     {
-        if(pastDestination != _destination && !spawn)
-        {
-            animAttack = false;
-            animRun = true;
-            pastDestination = _destination;
-            SetDestinationNavMesh();
-        }
-        //_navMeshAgent.CalculatePath(_destination.position, _navMeshAgent.path);
 
     }
 
@@ -56,7 +49,7 @@ public class MovePlayer : MonoBehaviour
     {
         if (_destination != null)
         {
-
+            meshS.BuildNavMesh();
             Vector3 targetVector = _destination.transform.position;
             _navMeshAgent.SetDestination(targetVector);
             Debug.Log(_navMeshAgent.pathStatus + "Enemy ID" + ID);
@@ -116,7 +109,10 @@ public class MovePlayer : MonoBehaviour
     public void setDestination(Transform destination)
     {
         _destination = destination;
-        
+        animAttack = false;
+        animRun = true;
+        //pastDestination = _destination;
+        //SetDestinationNavMesh();
     }
     public void EnableNavMesh()
     {
@@ -164,6 +160,7 @@ public class MovePlayer : MonoBehaviour
 
         //_navMeshAgent.enabled = true;
         _navMeshAgent.isStopped = false;
+        SetDestinationNavMesh();
     }
 
     private void rotateTowards(float targetX, float targetZ)
