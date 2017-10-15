@@ -26,17 +26,20 @@ public class MovePlayer : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        _navMeshAgent = this.GetComponent<NavMeshAgent>();
-        //pastDestination = _destination;
-        if (_navMeshAgent == null)
+        if (game.getMaster())
         {
-            Debug.LogError("Keine NavMesh");
+            _navMeshAgent = this.GetComponent<NavMeshAgent>();
+            //pastDestination = _destination;
+            if (_navMeshAgent == null)
+            {
+                Debug.LogError("Keine NavMesh");
+            }
+            else
+            {
+                //SetDestinationNavMesh();
+            }
+            StartCoroutine(Spawn());
         }
-        else
-        {
-            //SetDestinationNavMesh();
-        }
-        StartCoroutine(Spawn());
     }
 
     private void Update()
@@ -58,7 +61,7 @@ public class MovePlayer : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other.gameObject.tag);
-        if (!dying)
+        if (!dying && game.getMaster())
         {
             
             if (other.gameObject.tag == "Wall" && wallAlive)
@@ -130,7 +133,7 @@ public class MovePlayer : MonoBehaviour
 
     IEnumerator DamageWall()
     {
-        while (wallAlive && !dying)
+        while (wallAlive && !dying && game.getMaster())
         {
             yield return new WaitForSeconds(1.4f);
             if (game.setDamageToWall(targetNR, damage) <= 0)

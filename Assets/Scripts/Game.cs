@@ -152,4 +152,8 @@ public class Game : MonoBehaviour {
         }
         navMesh.BuildNavMesh();
     }
+    public bool getMaster()
+    {
+        return master;
+    }
 }
