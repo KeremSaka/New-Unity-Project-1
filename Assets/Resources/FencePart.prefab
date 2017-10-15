@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 54649153301902514}
   - component: {fileID: 65713858987825738}
   - component: {fileID: 114197022662809642}
-  - component: {fileID: 114104564410290588}
   m_Layer: 0
   m_Name: FencePart
   m_TagString: Wall
@@ -111,18 +110,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.9515915, y: 11.820525, z: 0.8884864}
   m_Center: {x: -5.475792, y: 5.9102626, z: -0.4442451}
---- !u!114 &114104564410290588
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1751330614990414}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89354489d82770a468c3f955c3ae00f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!114 &114197022662809642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,7 +130,7 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 114104564410290588}
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

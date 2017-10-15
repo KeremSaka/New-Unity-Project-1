@@ -10,9 +10,11 @@ public class _NetworkPlayer: Photon.MonoBehaviour {
     public Animator anim;
 	// Use this for initialization
 	void Start () {
-		/*if (photonView.isMine) {
+        /*if (photonView.isMine) {
 			playerMovement.enabled = true;
 		}*/
+        anim = gameObject.GetComponentInChildren<Animator>();
+        
 	}
 
 	// Update is called once per frame
@@ -32,22 +34,20 @@ public class _NetworkPlayer: Photon.MonoBehaviour {
 			// We own this player: send the others our data
 			stream.SendNext(transform.position);
 			stream.SendNext(transform.rotation);
-            if (anim != null)
-            {
-                stream.SendNext(anim.GetBool("Run"));
-                stream.SendNext(anim.GetBool("Attack"));
-            }
+
+            stream.SendNext(anim.GetBool("Run"));
+            stream.SendNext(anim.GetBool("Attack"));
+
         }
 		else
 		{
 			// Network player, receive data
 			this.correctPlayerPos = (Vector3)stream.ReceiveNext();
 			this.correctPlayerRot = (Quaternion)stream.ReceiveNext();
-            if (anim != null)
-            {
-                anim.SetBool("Run", (bool)stream.ReceiveNext());
-                anim.SetBool("Attack", (bool)stream.ReceiveNext());
-            }
+         
+            anim.SetBool("Run", (bool)stream.ReceiveNext());
+            anim.SetBool("Attack", (bool)stream.ReceiveNext());
+                
         }
 	}
 }
