@@ -4026,7 +4026,7 @@ MonoBehaviour:
   WallHealth: []
   TowerHealth: 100
   spawntime: 0.5
-  MaxEnemyNumber: 10
+  MaxEnemyNumber: 2
   navMesh: {fileID: 1863824519}
   networkManager: {fileID: 1131796326}
 --- !u!1 &1090638990
@@ -6946,7 +6946,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.033333335
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 0b6752375592bf347a2311be0581463a, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: db97b8760695e5b4dab70993db896d01, type: 2}
 --- !u!1001 &1871249077
 Prefab:
   m_ObjectHideFlags: 0

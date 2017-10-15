@@ -33,11 +33,7 @@ public class Game : MonoBehaviour {
         {
             WallHealth[i] = 250f;
         }
-        if(PhotonNetwork.otherPlayers.Length == 0)
-        {
-            master = true;
-           
-        }
+        
         //navMesh.BuildNavMesh();
 	}
 	
@@ -45,10 +41,17 @@ public class Game : MonoBehaviour {
 	void Update () {
        
     }
-    public void startGame() { 
-        SpawnFences();
-        navMesh.BuildNavMesh();
-        StartCoroutine(SpawnEnemys(MaxEnemyNumber));
+    public void startGame() {
+         navMesh.BuildNavMesh();
+        if (PhotonNetwork.otherPlayers.Length == 0)
+        {
+            master = true;
+            SpawnFences();
+           
+            StartCoroutine(SpawnEnemys(MaxEnemyNumber));
+        }
+        
+        
     }
     private void SpawnFences()
     {
@@ -69,7 +72,8 @@ public class Game : MonoBehaviour {
         {
             
             int temp = Random.Range(0, spawnpoint.Length - 1);
-            GameObject enemy = Instantiate(enemyPrefab, spawnpoint[temp], false);
+            GameObject enemy = PhotonNetwork.Instantiate("SkelletonEnemy 1", spawnpoint[temp].position, Quaternion.identity, 0);
+            //GameObject enemy = Instantiate(enemyPrefab, spawnpoint[temp], false);
             //enemy.transform.localScale = new Vector3(3f, 3f, 3f);
             MovePlayer mp = enemy.GetComponent<MovePlayer>();
             mp.ID = i;
@@ -118,12 +122,14 @@ public class Game : MonoBehaviour {
     public float setDamageToWall(int target, float damage)
     {
         WallHealth[target] -= damage;
-        if(WallHealth[target] <= 0 && Walls[target]!=null)
+        if(WallHealth[target] <= 0 && Walls[target]!=null )
         {
-            PhotonNetwork.Destroy(Walls[target]);
-            //Destroy(Walls[target].gameObject);
-            Walls[target] = null;
-           
+            if (master)
+            {
+                PhotonNetwork.Destroy(Walls[target]);
+                //Destroy(Walls[target].gameObject);
+                Walls[target] = null;
+            }
             setTowerDestination();
         }
         return WallHealth[target];
