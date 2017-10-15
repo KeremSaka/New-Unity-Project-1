@@ -6,8 +6,8 @@ public class _NetworkPlayer: Photon.MonoBehaviour {
 
 	private Vector3 correctPlayerPos;
 	private Quaternion correctPlayerRot;
-	//public _PlayerMovement playerMovement;
-
+    //public _PlayerMovement playerMovement;
+    public Animator anim;
 	// Use this for initialization
 	void Start () {
 		/*if (photonView.isMine) {
@@ -32,12 +32,17 @@ public class _NetworkPlayer: Photon.MonoBehaviour {
 			// We own this player: send the others our data
 			stream.SendNext(transform.position);
 			stream.SendNext(transform.rotation);
-		}
+            stream.SendNext(anim.GetBool("Run"));
+            stream.SendNext(anim.GetBool("Attack"));
+
+        }
 		else
 		{
 			// Network player, receive data
 			this.correctPlayerPos = (Vector3)stream.ReceiveNext();
 			this.correctPlayerRot = (Quaternion)stream.ReceiveNext();
-		}
+            anim.SetBool("Run", (bool)stream.ReceiveNext());
+            anim.SetBool("Attack", (bool)stream.ReceiveNext());
+        }
 	}
 }
