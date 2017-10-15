@@ -135,7 +135,7 @@ public class MovePlayer : MonoBehaviour
     {
         while (wallAlive && !dying && Game.getMaster())
         {
-            yield return new WaitForSeconds(1.4f);
+            yield return new WaitForSeconds(0.75f);
             if (game.setDamageToWall(targetNR, damage) <= 0)
             {
                 wallAlive = false;
@@ -144,7 +144,7 @@ public class MovePlayer : MonoBehaviour
         }
         while (!dying && game.TowerHealth <= 0)
         {
-            yield return new WaitForSeconds(1.4f);
+            yield return new WaitForSeconds(0.75f);
             game.TowerHealth -= damage;
         }
 

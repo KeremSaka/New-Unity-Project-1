@@ -62,6 +62,7 @@ public class Game : MonoBehaviour {
             }
             Walls[i] = PhotonNetwork.Instantiate("FencePart", Walls[i].transform.position, rotation, 0);
         }
+        navMesh.BuildNavMesh();
     }
 
     IEnumerator SpawnEnemys(int number)
@@ -150,6 +151,12 @@ public class Game : MonoBehaviour {
             Enemys[i].setDestination(Tower);
             Enemys[i].idleStart();
         }
+        StartCoroutine(BakeNew());
+       
+    }
+    IEnumerator BakeNew()
+    {
+        yield return new WaitForSeconds(0.5f);
         navMesh.BuildNavMesh();
     }
     public static bool getMaster()
