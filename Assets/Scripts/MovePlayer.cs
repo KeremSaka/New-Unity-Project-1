@@ -26,7 +26,7 @@ public class MovePlayer : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if (game.getMaster())
+        if (Game.getMaster())
         {
             _navMeshAgent = this.GetComponent<NavMeshAgent>();
             //pastDestination = _destination;
@@ -61,7 +61,7 @@ public class MovePlayer : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other.gameObject.tag);
-        if (!dying && game.getMaster())
+        if (!dying && Game.getMaster())
         {
             
             if (other.gameObject.tag == "Wall" && wallAlive)
@@ -133,7 +133,7 @@ public class MovePlayer : MonoBehaviour
 
     IEnumerator DamageWall()
     {
-        while (wallAlive && !dying && game.getMaster())
+        while (wallAlive && !dying && Game.getMaster())
         {
             yield return new WaitForSeconds(1.4f);
             if (game.setDamageToWall(targetNR, damage) <= 0)

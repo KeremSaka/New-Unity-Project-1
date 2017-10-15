@@ -17,7 +17,7 @@ public class Game : MonoBehaviour {
     public float TowerHealth = 100;
     public float spawntime;
     public int MaxEnemyNumber = 1;
-    private bool master = false;
+    private static bool master = false;
     public NavMeshSurface navMesh;
 
     public _NetworkManager networkManager;
@@ -152,7 +152,7 @@ public class Game : MonoBehaviour {
         }
         navMesh.BuildNavMesh();
     }
-    public bool getMaster()
+    public static bool getMaster()
     {
         return master;
     }
