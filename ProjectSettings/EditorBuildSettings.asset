@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Photon Unity Networking/Demos/Demo2DJumpAndRunWithPhysics/Demo2DJumpAndRunWithPhysics-Scene.unity
     guid: 2cd8533503c3ea649b6c543c6126c811
-  - enabled: 1
+  - enabled: 0
     path: Assets/NetworkConnectionTest.unity
     guid: 642543ab8d2c24c47946fae289ad4729
+  - enabled: 1
+    path: Assets/TerrainTest 1_Network.unity
+    guid: 8237492db66b8bc49934b553685ed265
