@@ -50,7 +50,7 @@ public class MovePlayer : MonoBehaviour
         {
             Vector3 targetVector = _destination.transform.position;
             _navMeshAgent.SetDestination(targetVector);
-            Debug.Log(_navMeshAgent.pathStatus + "Enemy ID" + ID);
+            
         }
 
     }

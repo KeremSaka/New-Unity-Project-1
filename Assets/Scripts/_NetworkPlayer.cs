@@ -6,13 +6,13 @@ public class _NetworkPlayer: Photon.MonoBehaviour {
 
 	private Vector3 correctPlayerPos;
 	private Quaternion correctPlayerRot;
-	public _PlayerMovement playerMovement;
+	//public _PlayerMovement playerMovement;
 
 	// Use this for initialization
 	void Start () {
-		if (photonView.isMine) {
+		/*if (photonView.isMine) {
 			playerMovement.enabled = true;
-		}
+		}*/
 	}
 
 	// Update is called once per frame

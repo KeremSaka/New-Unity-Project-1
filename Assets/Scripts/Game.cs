@@ -17,30 +17,54 @@ public class Game : MonoBehaviour {
     public float TowerHealth = 100;
     public float spawntime;
     public int MaxEnemyNumber = 1;
-
+    private bool master = false;
     public NavMeshSurface navMesh;
+
+    public _NetworkManager networkManager;
 	// Use this for initialization
 	void Start () {
         GameData.Instance.MaxEnemyNumber = (GameData.Instance.LevelNumber + 1) * 10;
 
         Enemys = new MovePlayer[MaxEnemyNumber];
     
-        StartCoroutine(SpawnEnemys(MaxEnemyNumber));
+        //StartCoroutine(SpawnEnemys(MaxEnemyNumber));
         WallHealth = new float[Walls.Length];
         for(int i = 0; i< Walls.Length; i++)
         {
             WallHealth[i] = 250f;
+        }
+        if(PhotonNetwork.otherPlayers.Length == 0)
+        {
+            master = true;
+           
         }
         //navMesh.BuildNavMesh();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        
+       
+    }
+    public void startGame() { 
+        SpawnFences();
+        navMesh.BuildNavMesh();
+        StartCoroutine(SpawnEnemys(MaxEnemyNumber));
+    }
+    private void SpawnFences()
+    {
+        for (int i = 0; i< Walls.Length; i++) {
+            Quaternion rotation = Quaternion.identity;
+            if(i ==1 || i == 3)
+            {
+                rotation.eulerAngles = new Vector3(0,90,0);
+            }
+            Walls[i] = PhotonNetwork.Instantiate("FencePart", Walls[i].transform.position, rotation, 0);
+        }
     }
 
     IEnumerator SpawnEnemys(int number)
     {
+        yield return new WaitForSeconds(1f);
         for (int i = 0; i < number; i++)
         {
             
@@ -96,42 +120,10 @@ public class Game : MonoBehaviour {
         WallHealth[target] -= damage;
         if(WallHealth[target] <= 0 && Walls[target]!=null)
         {
-            
-            Destroy(Walls[target].gameObject);
+            PhotonNetwork.Destroy(Walls[target]);
+            //Destroy(Walls[target].gameObject);
             Walls[target] = null;
-            if(target == 0)
-            {
-                int temp = Walls.Length - 1;
-                if (Walls[temp] != null)
-                {
-                    Destroy(Walls[temp].gameObject);
-                    Walls[temp] = null;
-                }
-            }
-            else
-            {
-                if (Walls[target-1] != null)
-                {
-                    Destroy(Walls[target - 1].gameObject);
-                    Walls[target - 1] = null;
-                }
-            }
-            if (target == Walls.Length - 1)
-            {
-                if (Walls[0] != null)
-                {
-                    Destroy(Walls[0].gameObject);
-                    Walls[0] = null;
-                }
-            }
-            else
-            {
-                if (Walls[target+1] != null)
-                {
-                    Destroy(Walls[target + 1].gameObject);
-                    Walls[target + 1] = null;
-                }
-            }
+           
             setTowerDestination();
         }
         return WallHealth[target];

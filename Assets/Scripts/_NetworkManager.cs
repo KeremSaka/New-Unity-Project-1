@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class _NetworkManager : MonoBehaviour {
 
-	public void Connect(){
+
+
+    public Game game;
+
+    public void Connect(){
 		Debug.Log ("Connection wird ausgeführt...");
 		PhotonNetwork.ConnectUsingSettings ("vs01");
 	}
@@ -31,12 +35,15 @@ public class _NetworkManager : MonoBehaviour {
 
 	void OnJoinedRoom(){
 		Debug.Log ("Joined room.");
-		Spawn ();
-
+        //Spawn ();
+        game.startGame();
 	}
+
+
 
 	void Spawn(){
 		int posX = PhotonNetwork.otherPlayers.Length;
+
 		GameObject level = PhotonNetwork.Instantiate ("FencePart", new Vector3 (posX, 5, -4), Quaternion.identity, 0);
 	}
 
