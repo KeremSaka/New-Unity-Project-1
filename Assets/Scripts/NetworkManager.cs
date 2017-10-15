@@ -46,7 +46,7 @@ public class NetworkManager : MonoBehaviour {
 			level.transform.parent = GameObject.Find ("ImageTarget").transform;
 			createdLevel = true;
 		}
-		GameObject player = PhotonNetwork.Instantiate ("Player", new Vector3(posX,0,0), Quaternion.identity, 0);
+		GameObject player = PhotonNetwork.Instantiate ("Player", new Vector3(posX,1,0), Quaternion.identity, 0);
 		Debug.Log(player.name);
 		player.transform.parent = GameObject.Find ("ImageTarget").transform;
 	}
