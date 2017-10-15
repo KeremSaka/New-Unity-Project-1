@@ -33,11 +33,6 @@ public class Game : MonoBehaviour {
         {
             WallHealth[i] = 250f;
         }
-        if(PhotonNetwork.otherPlayers.Length == 0)
-        {
-            master = true;
-           
-        }
         //navMesh.BuildNavMesh();
 	}
 	
@@ -46,7 +41,11 @@ public class Game : MonoBehaviour {
        
     }
     public void startGame() { 
-        SpawnFences();
+		if (PhotonNetwork.otherPlayers.Length == 0)
+		{
+			master = true;
+			SpawnFences();
+		}
         navMesh.BuildNavMesh();
         StartCoroutine(SpawnEnemys(MaxEnemyNumber));
     }
@@ -118,7 +117,7 @@ public class Game : MonoBehaviour {
     public float setDamageToWall(int target, float damage)
     {
         WallHealth[target] -= damage;
-        if(WallHealth[target] <= 0 && Walls[target]!=null)
+		if(WallHealth[target] <= 0 && Walls[target]!=null && master)
         {
             PhotonNetwork.Destroy(Walls[target]);
             //Destroy(Walls[target].gameObject);
