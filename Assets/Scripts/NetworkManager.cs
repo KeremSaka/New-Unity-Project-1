@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NetworkManager : MonoBehaviour {
 
-	GameObject mainMenu;
+	private bool createdLevel = true;
 
 	public void Connect(){
 		Debug.Log ("Connection wird ausgeführt...");
@@ -13,7 +13,7 @@ public class NetworkManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		mainMenu = GameObject.Find ("MainMenu");
+		Connect ();
 	}
 
 	void OnConnectedToMaster(){
@@ -23,12 +23,12 @@ public class NetworkManager : MonoBehaviour {
 
 	void OnJoinedLobby(){
 		Debug.Log ("Mit der Lobby verbunden.");
-		mainMenu.SetActive (false);
 		PhotonNetwork.JoinRandomRoom ();
 	}
 
 	void OnPhotonRandomJoinFailed(){
 		Debug.Log ("No room. Creating new room.");
+		createdLevel = false;
 		PhotonNetwork.CreateRoom("myRoom");
 	}
 
@@ -40,7 +40,15 @@ public class NetworkManager : MonoBehaviour {
 
 	void Spawn(){
 		int posX = PhotonNetwork.otherPlayers.Length;
-		PhotonNetwork.Instantiate ("Player", new Vector3(posX,0,0), Quaternion.identity, 0);
+		if (!createdLevel) {
+			GameObject level = PhotonNetwork.Instantiate ("Level", new Vector3 (posX, 0, 0), Quaternion.identity, 0);
+			Debug.Log (level.name);
+			level.transform.parent = GameObject.Find ("ImageTarget").transform;
+			createdLevel = true;
+		}
+		GameObject player = PhotonNetwork.Instantiate ("Player", new Vector3(posX,0,0), Quaternion.identity, 0);
+		Debug.Log(player.name);
+		player.transform.parent = GameObject.Find ("ImageTarget").transform;
 	}
 
 	// Update is called once per frame
