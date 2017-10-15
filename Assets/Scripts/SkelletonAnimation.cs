@@ -21,31 +21,33 @@ public class SkelletonAnimation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (enemy.getRun())
-        {
-            anim.SetBool(runHash, true);
-           if(enemy.getHealth() <= health)
+        if (Game.getMaster()) { 
+            if (enemy.getRun())
             {
-                anim.SetTrigger(chargeHash);
+                anim.SetBool(runHash, true);
+               if(enemy.getHealth() <= health)
+                {
+                    anim.SetTrigger(chargeHash);
                 
+                }
+            }
+            else
+            {
+                anim.SetBool(runHash, false);
+            }
+            if (enemy.getAttack())
+            {
+                anim.SetBool(attackHash, true);
+            }
+            else
+            {
+                anim.SetBool(attackHash, false);
+            }
+
+            if (enemy.getDying())
+            {
+                anim.SetTrigger(deathHash);
             }
         }
-        else
-        {
-            anim.SetBool(runHash, false);
-        }
-        if (enemy.getAttack())
-        {
-            anim.SetBool(attackHash, true);
-        }
-        else
-        {
-            anim.SetBool(attackHash, false);
-        }
-
-        if (enemy.getDying())
-        {
-            anim.SetTrigger(deathHash);
-        }
-	}
+    }
 }

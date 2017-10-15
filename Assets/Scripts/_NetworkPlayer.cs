@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class _NetworkPlayer: Photon.MonoBehaviour {
 
-	private Vector3 correctPlayerPos;
+    private int attackHash = Animator.StringToHash("Attack");
+    private int runHash = Animator.StringToHash("Run");
+    private Vector3 correctPlayerPos;
 	private Quaternion correctPlayerRot;
     //public _PlayerMovement playerMovement;
     public Animator anim;
@@ -35,8 +37,8 @@ public class _NetworkPlayer: Photon.MonoBehaviour {
 			stream.SendNext(transform.position);
 			stream.SendNext(transform.rotation);
 
-            stream.SendNext(anim.GetBool("Run"));
-            stream.SendNext(anim.GetBool("Attack"));
+            stream.SendNext(anim.GetBool(runHash));
+            stream.SendNext(anim.GetBool(attackHash));
 
         }
 		else
@@ -44,10 +46,13 @@ public class _NetworkPlayer: Photon.MonoBehaviour {
 			// Network player, receive data
 			this.correctPlayerPos = (Vector3)stream.ReceiveNext();
 			this.correctPlayerRot = (Quaternion)stream.ReceiveNext();
-         
-            anim.SetBool("Run", (bool)stream.ReceiveNext());
-            anim.SetBool("Attack", (bool)stream.ReceiveNext());
-                
+            bool temp = (bool)stream.ReceiveNext();
+            anim.SetBool(runHash,temp );
+            Debug.Log(temp + " Run");
+            temp = (bool)stream.ReceiveNext();
+            anim.SetBool(attackHash, temp);
+            Debug.Log(temp + " Attack");
+
         }
 	}
 }
