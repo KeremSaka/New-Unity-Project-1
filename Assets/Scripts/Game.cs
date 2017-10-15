@@ -15,35 +15,35 @@ public class Game : MonoBehaviour {
 
     public float[] WallHealth;
     public float TowerHealth = 100;
-
+    public float spawntime;
     public int MaxEnemyNumber = 1;
 
-    public NavMeshSurface meshSurface;
-
+    public NavMeshSurface navMesh;
 	// Use this for initialization
 	void Start () {
         GameData.Instance.MaxEnemyNumber = (GameData.Instance.LevelNumber + 1) * 10;
-        meshSurface.BuildNavMesh();
+
         Enemys = new MovePlayer[MaxEnemyNumber];
     
         StartCoroutine(SpawnEnemys(MaxEnemyNumber));
         WallHealth = new float[Walls.Length];
         for(int i = 0; i< Walls.Length; i++)
         {
-            WallHealth[i] = 500f;
+            WallHealth[i] = 250f;
         }
+        //navMesh.BuildNavMesh();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        meshSurface.BuildNavMesh();
+        
     }
 
     IEnumerator SpawnEnemys(int number)
     {
         for (int i = 0; i < number; i++)
         {
-            meshSurface.BuildNavMesh();
+            
             int temp = Random.Range(0, spawnpoint.Length - 1);
             GameObject enemy = Instantiate(enemyPrefab, spawnpoint[temp], false);
             //enemy.transform.localScale = new Vector3(3f, 3f, 3f);
@@ -54,9 +54,8 @@ public class Game : MonoBehaviour {
             
             mp.game = this;
             mp.targetNR = target;
-            mp.meshS = meshSurface;
             mp.setDestination(Walls[target].transform);
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(spawntime);
 
         }
         
@@ -133,7 +132,6 @@ public class Game : MonoBehaviour {
                     Walls[target + 1] = null;
                 }
             }
-            meshSurface.BuildNavMesh();
             setTowerDestination();
         }
         return WallHealth[target];
@@ -142,12 +140,16 @@ public class Game : MonoBehaviour {
 
     private void setTowerDestination()
     {
+        navMesh.RemoveData();
+        
+        
         for (int i = 0; i< Enemys.Length; i++)
         {
+           
             Enemys[i].wallAlive = false;
             Enemys[i].setDestination(Tower);
-            Enemys[i].EnableNavMesh();
+            Enemys[i].idleStart();
         }
-        
+        navMesh.BuildNavMesh();
     }
 }

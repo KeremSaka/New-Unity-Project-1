@@ -23,7 +23,6 @@ public class MovePlayer : MonoBehaviour
     public bool wallAlive = true;
     public int targetNR;
     public int ID;
-    public NavMeshSurface meshS;
     // Use this for initialization
     void Start()
     {
@@ -49,7 +48,6 @@ public class MovePlayer : MonoBehaviour
     {
         if (_destination != null)
         {
-            meshS.BuildNavMesh();
             Vector3 targetVector = _destination.transform.position;
             _navMeshAgent.SetDestination(targetVector);
             Debug.Log(_navMeshAgent.pathStatus + "Enemy ID" + ID);
@@ -162,7 +160,16 @@ public class MovePlayer : MonoBehaviour
         _navMeshAgent.isStopped = false;
         SetDestinationNavMesh();
     }
-
+    public void idleStart()
+    {
+        StartCoroutine(Idle());
+    }
+    IEnumerator Idle()
+    {
+        yield return new WaitForSeconds(2f);
+        _navMeshAgent.isStopped = false;
+        SetDestinationNavMesh();
+    }
     private void rotateTowards(float targetX, float targetZ)
     {
         float x = targetX - transform.position.x;
