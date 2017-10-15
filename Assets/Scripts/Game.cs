@@ -33,39 +33,24 @@ public class Game : MonoBehaviour {
         {
             WallHealth[i] = 250f;
         }
-<<<<<<< HEAD
-        
-=======
->>>>>>> 5bde31eaa715373da0e8bbab4b1d4b9720665c1f
-        //navMesh.BuildNavMesh();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
        
     }
-<<<<<<< HEAD
+
     public void startGame() {
-         navMesh.BuildNavMesh();
+        navMesh.BuildNavMesh();
         if (PhotonNetwork.otherPlayers.Length == 0)
         {
             master = true;
             SpawnFences();
-           
+
             StartCoroutine(SpawnEnemys(MaxEnemyNumber));
         }
-        
-        
-=======
-    public void startGame() { 
-		if (PhotonNetwork.otherPlayers.Length == 0)
-		{
-			master = true;
-			SpawnFences();
-		}
-        navMesh.BuildNavMesh();
-        StartCoroutine(SpawnEnemys(MaxEnemyNumber));
->>>>>>> 5bde31eaa715373da0e8bbab4b1d4b9720665c1f
+
     }
     private void SpawnFences()
     {
@@ -136,12 +121,9 @@ public class Game : MonoBehaviour {
     public float setDamageToWall(int target, float damage)
     {
         WallHealth[target] -= damage;
-<<<<<<< HEAD
-        if(WallHealth[target] <= 0 && Walls[target]!=null )
-=======
-		if(WallHealth[target] <= 0 && Walls[target]!=null && master)
->>>>>>> 5bde31eaa715373da0e8bbab4b1d4b9720665c1f
-        {
+
+        if (WallHealth[target] <= 0 && Walls[target] != null) { 
+
             if (master)
             {
                 PhotonNetwork.Destroy(Walls[target]);
@@ -152,6 +134,8 @@ public class Game : MonoBehaviour {
         }
         return WallHealth[target];
     }
+    
+    
 
 
     private void setTowerDestination()
