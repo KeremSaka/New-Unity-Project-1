@@ -23,7 +23,6 @@ public class Game : MonoBehaviour {
     public _NetworkManager networkManager;
 	// Use this for initialization
 	void Start () {
-        GameData.Instance.MaxEnemyNumber = (GameData.Instance.LevelNumber + 1) * 10;
 
         Enemys = new MovePlayer[MaxEnemyNumber];
     
@@ -112,11 +111,12 @@ public class Game : MonoBehaviour {
     }
     private void OnGUI()
     {
+        /*
         GUI.Box(new Rect(Screen.width - 150, 0, 150, 50),"Enemys killed: " +  GameData.Instance.EnemyKilled);
         GUI.Box(new Rect(Screen.width - 150, 20, 150, 50), "Enemys missed: " + GameData.Instance.EnemyReachedDestination);
         GUI.Box(new Rect(Screen.width - 150, 40, 150, 50), "Max Enemy Number: " + GameData.Instance.MaxEnemyNumber);
         GUI.Box(new Rect(Screen.width - 150, 60, 150, 50), "Number Of Tower: " + GameData.Instance.NumberOfTowers);
-        GUI.Box(new Rect(Screen.width - 150, 80, 150, 50), "Current Level: " + (GameData.Instance.LevelNumber +1));
+        GUI.Box(new Rect(Screen.width - 150, 80, 150, 50), "Current Level: " + (GameData.Instance.LevelNumber +1));*/
     }
 
     public float setDamageToWall(int target, float damage)

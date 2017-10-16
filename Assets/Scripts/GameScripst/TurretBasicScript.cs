@@ -12,8 +12,6 @@ public class TurretBasicScript : MonoBehaviour {
     private int TowerID;
 	// Use this for initialization
 	void Start () {
-        TowerID = GameData.Instance.NumberOfTowers;
-        GameData.Instance.NumberOfTowers++;
 		turretColliderScript =turretFieldOfView.GetComponent<TurretCollider>();
 	}
 

@@ -21,6 +21,7 @@ public class SkelletonAnimation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        /*
         if (Game.getMaster()) { 
             if (enemy.getRun())
             {
@@ -48,6 +49,6 @@ public class SkelletonAnimation : MonoBehaviour {
             {
                 anim.SetTrigger(deathHash);
             }
-        }
+        }*/
     }
 }
