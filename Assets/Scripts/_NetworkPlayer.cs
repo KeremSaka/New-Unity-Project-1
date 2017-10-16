@@ -48,10 +48,8 @@ public class _NetworkPlayer: Photon.MonoBehaviour {
 			this.correctPlayerRot = (Quaternion)stream.ReceiveNext();
             bool temp = (bool)stream.ReceiveNext();
             anim.SetBool(runHash,temp );
-            Debug.Log(temp + " Run");
             temp = (bool)stream.ReceiveNext();
             anim.SetBool(attackHash, temp);
-            Debug.Log(temp + " Attack");
 
         }
 	}

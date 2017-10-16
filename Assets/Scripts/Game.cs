@@ -72,22 +72,23 @@ public class Game : MonoBehaviour {
             
             int temp = Random.Range(0, spawnpoint.Length - 1);
             GameObject enemy = PhotonNetwork.Instantiate("SkelletonEnemy 1", spawnpoint[temp].position, Quaternion.identity, 0);
-            //GameObject enemy = Instantiate(enemyPrefab, spawnpoint[temp], false);
-            //enemy.transform.localScale = new Vector3(3f, 3f, 3f);
+
+            //Setting parameters of the Enemy gameObject
             MovePlayer mp = enemy.GetComponent<MovePlayer>();
             mp.ID = i;
             Enemys[i] = mp;
-            int target = NearestWall(spawnpoint[temp]);
+            int target = NearestWall(spawnpoint[temp]);//id of the Wall which will be targeted
             
             mp.game = this;
             mp.targetNR = target;
             mp.setDestination(Walls[target].transform);
+
             yield return new WaitForSeconds(spawntime);
 
         }
         
     }
-    public int NearestWall(Transform tp)
+    public int NearestWall(Transform tp)//calculates the neerest wall for the gammeObject tp and returns the id of that wall
     {
 
         int nearest = 0;
@@ -119,7 +120,7 @@ public class Game : MonoBehaviour {
         GUI.Box(new Rect(Screen.width - 150, 80, 150, 50), "Current Level: " + (GameData.Instance.LevelNumber +1));*/
     }
 
-    public float setDamageToWall(int target, float damage)
+    public float setDamageToWall(int target, float damage)//Use Id of wall to set Damage to that wall
     {
         WallHealth[target] -= damage;
 
@@ -139,14 +140,14 @@ public class Game : MonoBehaviour {
     
 
 
-    private void setTowerDestination()
+    private void setTowerDestination()//called after scene Changes so that a new Bake is triggered
     {
-        navMesh.RemoveData();
+        navMesh.RemoveData();//Deletes the current NavMesh
         
         
         for (int i = 0; i< Enemys.Length; i++)
         {
-           
+           //Change enemy Target to Tower
             Enemys[i].wallAlive = false;
             Enemys[i].setDestination(Tower);
             Enemys[i].idleStart();
@@ -154,10 +155,10 @@ public class Game : MonoBehaviour {
         StartCoroutine(BakeNew());
        
     }
-    IEnumerator BakeNew()
+    IEnumerator BakeNew()//needed because the  calculation needs some time before a bake can happen
     {
         yield return new WaitForSeconds(0.5f);
-        navMesh.BuildNavMesh();
+        navMesh.BuildNavMesh();//bakes new Nav Mesh
     }
     public static bool getMaster()
     {
