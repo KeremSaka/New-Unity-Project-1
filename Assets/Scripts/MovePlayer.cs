@@ -21,7 +21,7 @@ public class MovePlayer : MonoBehaviour
     //Bools inmportant to Animate the Object
     private bool dying = false;
     private bool spawn = false;
- 
+    public bool attack = false;
 
     public bool wallAlive = true;//declares if the Wall is intact and hase no holes
 
@@ -31,10 +31,11 @@ public class MovePlayer : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        _navMeshAgent = this.GetComponent<NavMeshAgent>();
         anim = gameObject.GetComponentInChildren<Animator>();
         if (Game.getMaster())
         {
-            _navMeshAgent = this.GetComponent<NavMeshAgent>();
+            
             if (_navMeshAgent == null)
             {
                 Debug.LogError("Keine NavMesh");
@@ -60,6 +61,8 @@ public class MovePlayer : MonoBehaviour
             _navMeshAgent.SetDestination(targetVector);
             
         }
+        anim.SetBool("Run", true);
+        anim.SetBool("Attack", false);
 
     }
 
@@ -75,7 +78,10 @@ public class MovePlayer : MonoBehaviour
                 anim.SetBool("Attack", true);//Attack animation starts
                 //animRun = false;
                 //animAttack = true;
-                StartCoroutine(DamageWall());
+                if (!attack)
+                {
+                    StartCoroutine(DamageWall());
+                }
             }
             if (other.gameObject.tag == "Destination")
             {
@@ -84,7 +90,10 @@ public class MovePlayer : MonoBehaviour
                 anim.SetBool("Attack", true);
                 //animRun = false;
                 //animAttack = true;
-                StartCoroutine(DamageWall());
+                if (!attack)
+                {
+                    StartCoroutine(DamageWall());
+                }
             }
 
             if (other.gameObject.tag == "Bullet")
@@ -118,8 +127,7 @@ public class MovePlayer : MonoBehaviour
     public void setDestination(Transform destination)
     {
         _destination = destination;
-        anim.SetBool("Run", true);
-        anim.SetBool("Attack", false);
+        
     }
 
     IEnumerator Death()
@@ -135,18 +143,20 @@ public class MovePlayer : MonoBehaviour
 
     IEnumerator DamageWall()
     {
-        while (wallAlive && !dying && Game.getMaster())
+        attack = true;
+        while (wallAlive && !dying && attack)
         {
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(1.5f);
             if (game.setDamageToWall(targetNR, damage) <= 0)
             {
                 wallAlive = false;
                 
             }
+            
         }
-        while (!dying && game.TowerHealth >= 0)
+        while (!dying && game.TowerHealth >= 0 && attack)
         {
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(1.5f);
             game.TowerHealth -= damage;
         }
 

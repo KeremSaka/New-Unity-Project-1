@@ -45,6 +45,7 @@ public class _NetworkManager : MonoBehaviour {
 		int posX = PhotonNetwork.otherPlayers.Length;
 
 		GameObject level = PhotonNetwork.Instantiate ("FencePart", new Vector3 (posX, 5, -4), Quaternion.identity, 0);
+        level.transform.parent = GameObject.Find("ImageTargetLevel").transform;
 	}
 
 	// Update is called once per frame

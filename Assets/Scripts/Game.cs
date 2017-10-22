@@ -14,9 +14,9 @@ public class Game : MonoBehaviour {
     public MovePlayer[] Enemys;
 
     public float[] WallHealth;
-    public float TowerHealth = 100;
+    public float TowerHealth = 1000;
     public float spawntime;
-    public int MaxEnemyNumber = 1;
+    public int MaxEnemyNumber;
     private static bool master = false;
     public NavMeshSurface navMesh;
 
@@ -60,6 +60,7 @@ public class Game : MonoBehaviour {
                 rotation.eulerAngles = new Vector3(0,90,0);
             }
             Walls[i] = PhotonNetwork.Instantiate("FencePart", Walls[i].transform.position, rotation, 0);
+            Walls[i].transform.parent = GameObject.Find("ImageTargetLevel").transform;
         }
         navMesh.BuildNavMesh();
     }
@@ -72,17 +73,20 @@ public class Game : MonoBehaviour {
             
             int temp = Random.Range(0, spawnpoint.Length - 1);
             GameObject enemy = PhotonNetwork.Instantiate("SkelletonEnemy 1", spawnpoint[temp].position, Quaternion.identity, 0);
-
+            enemy.transform.parent = GameObject.Find("ImageTargetLevel").transform;
             //Setting parameters of the Enemy gameObject
             MovePlayer mp = enemy.GetComponent<MovePlayer>();
+            
             mp.ID = i;
-            Enemys[i] = mp;
+            
             int target = NearestWall(spawnpoint[temp]);//id of the Wall which will be targeted
             
             mp.game = this;
             mp.targetNR = target;
+            Debug.Log(i + "Loop");
             mp.setDestination(Walls[target].transform);
-
+            Debug.Log(i + "Loop after SetDestination");
+            Enemys[i] = mp;
             yield return new WaitForSeconds(spawntime);
 
         }
@@ -149,6 +153,7 @@ public class Game : MonoBehaviour {
         {
            //Change enemy Target to Tower
             Enemys[i].wallAlive = false;
+            Enemys[i].attack = false;
             Enemys[i].setDestination(Tower);
             Enemys[i].idleStart();
         }
