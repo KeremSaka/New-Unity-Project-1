@@ -10,6 +10,7 @@ public class Game : MonoBehaviour {
 
     public GameObject enemyPrefab;
     public GameObject[] Walls;
+    public GameObject fencePrefab;
 
     public MovePlayer[] Enemys;
 
@@ -55,11 +56,18 @@ public class Game : MonoBehaviour {
     {
         for (int i = 0; i< Walls.Length; i++) {
             Quaternion rotation = Quaternion.identity;
-            if(i ==1 || i == 3)
+            Vector3 temp = Walls[i].transform.position;
+            if (i ==0 || i == 3)
             {
                 rotation.eulerAngles = new Vector3(0,90,0);
+           
             }
-            Walls[i] = PhotonNetwork.Instantiate("FencePart", Walls[i].transform.position, rotation, 0);
+    
+            
+            Walls[i] = PhotonNetwork.Instantiate("Fence", temp, rotation, 0);
+            //Walls[i].transform.localPosition = temp;
+
+
             Walls[i].transform.parent = GameObject.Find("ImageTargetLevel").transform;
         }
         navMesh.BuildNavMesh();
@@ -132,6 +140,7 @@ public class Game : MonoBehaviour {
 
             if (master)
             {
+                PhotonNetwork.Instantiate("BOOM!", Walls[target].transform.position, Quaternion.identity, 0);
                 PhotonNetwork.Destroy(Walls[target]);
                 //Destroy(Walls[target].gameObject);
                 Walls[target] = null;
