@@ -134,9 +134,10 @@ public class MovePlayer : MonoBehaviour
     {
         anim.SetBool("Run", false);
         anim.SetBool("Attack", false);
+        anim.SetBool("Death", true);
         _navMeshAgent.isStopped = true;
 
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(1f);
         
         Destroy(this.gameObject);
     }
@@ -201,5 +202,12 @@ public class MovePlayer : MonoBehaviour
     {
         return health;
     }
- 
+    public void dealDamage(float damage)
+    {
+        health -= damage;
+        if(health <= 0)
+        {
+            StartCoroutine(Death());
+        }
+    }
 }

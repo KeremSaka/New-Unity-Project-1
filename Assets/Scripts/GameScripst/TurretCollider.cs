@@ -5,7 +5,6 @@ using UnityEngine;
 public class TurretCollider : MonoBehaviour {
 	private GameObject currentTarget;
     private int currentTargetId;
-	private int pointer = 0;
 	// Use this for initialization
 	void Start () {
 
@@ -99,11 +98,20 @@ public class TurretCollider : MonoBehaviour {
 
         if (distance < distance2)
         {
-            return enemy1;
+            return enemy2;
         }
         else
         {
-            return enemy2;
+            return enemy1;
         }
+    }
+
+    public GameObject getCurrentTarget()
+    {
+        return currentTarget;
+    }
+    public void resetCurrentTarget()
+    {
+        currentTarget = null;
     }
 }
