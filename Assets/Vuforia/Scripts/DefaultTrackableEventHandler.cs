@@ -70,7 +70,8 @@ namespace Vuforia
         {
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
             Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
-
+            Game game = GetComponent<Game>();
+            MagicTowerBehaviorScript magicTower = GetComponent<MagicTowerBehaviorScript>();
             // Enable rendering:
             foreach (Renderer component in rendererComponents)
             {
@@ -83,6 +84,14 @@ namespace Vuforia
                 component.enabled = true;
             }
 
+            if(game != null)
+            {
+                game.enabled = true;
+            }
+            if (magicTower != null)
+            {
+                magicTower.enabled = true;
+            }
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
         }
 
@@ -91,7 +100,8 @@ namespace Vuforia
         {
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
             Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
-
+            Game game = GetComponent<Game>();
+            MagicTowerBehaviorScript magicTower = GetComponent<MagicTowerBehaviorScript>();
             // Disable rendering:
             foreach (Renderer component in rendererComponents)
             {
@@ -103,7 +113,14 @@ namespace Vuforia
             {
                 component.enabled = false;
             }
-
+            if (game != null)
+            {
+                game.enabled = false;
+            }
+            if (magicTower != null)
+            {
+                magicTower.enabled = false;
+            }
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
         }
 
