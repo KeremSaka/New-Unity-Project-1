@@ -50,7 +50,11 @@ public class MovePlayer : MonoBehaviour
 
     private void Update()
     {
-
+        if(health <= 0 && !anim.GetBool("Death"))
+        {
+            Kill();
+            
+        }
     }
 
     private void SetDestinationNavMesh()
@@ -116,7 +120,7 @@ public class MovePlayer : MonoBehaviour
         anim.SetBool("Attack", false);
         anim.SetBool("Death", true);
         _navMeshAgent.isStopped = true;
-
+        game.Enemys[ID] = null;
         yield return new WaitForSeconds(1f);
         
         Destroy(this.gameObject);
@@ -161,7 +165,7 @@ public class MovePlayer : MonoBehaviour
     IEnumerator Idle()//a pause until the mesh is recalculated and a new destiantion can be set
     {
         anim.SetBool("Run", false);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         _navMeshAgent.isStopped = false;
         SetDestinationNavMesh();
         anim.SetBool("Run", true);

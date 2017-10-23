@@ -160,11 +160,14 @@ public class Game : MonoBehaviour {
         
         for (int i = 0; i< Enemys.Length; i++)
         {
-           //Change enemy Target to Tower
-            Enemys[i].wallAlive = false;
-            Enemys[i].attack = false;
-            Enemys[i].setDestination(Tower);
-            Enemys[i].idleStart();
+            if (Enemys[i] != null)
+            {
+                //Change enemy Target to Tower
+                Enemys[i].wallAlive = false;
+                Enemys[i].attack = false;
+                Enemys[i].setDestination(Tower);
+                Enemys[i].idleStart();
+            }
         }
         StartCoroutine(BakeNew());
        

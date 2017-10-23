@@ -49,10 +49,6 @@ public class _NetworkPlayer: Photon.MonoBehaviour {
             stream.SendNext(anim.GetBool("Attack"));
             stream.SendNext(anim.GetBool("Death"));
             stream.SendNext(player.getHealth());
-            if(player.getHealth() <= 0)
-            {
-                player.Kill();
-            }
         }
 		else
 		{
