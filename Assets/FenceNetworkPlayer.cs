@@ -15,5 +15,15 @@ public class FenceNetworkPlayer : MonoBehaviour {
 	}
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
+        Debug.Log("Something is happening to the stream...");
+        if (stream.isWriting)
+        {
+            stream.SendNext(transform.position);
+        }
+        else
+        {
+            transform.position = (Vector3)stream.ReceiveNext();
+        }
+
     }
 }
