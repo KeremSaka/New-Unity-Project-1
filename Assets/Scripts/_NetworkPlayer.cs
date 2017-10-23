@@ -34,7 +34,7 @@ public class _NetworkPlayer: Photon.MonoBehaviour {
         {
             anim = gameObject.GetComponentInChildren<Animator>();
         }
-        if(anim == null)
+        if(player == null)
         {
             player = gameObject.GetComponentInChildren<MovePlayer>();
         }
