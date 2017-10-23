@@ -8,13 +8,13 @@ public class _NetworkPlayer: Photon.MonoBehaviour {
     private Vector3 correctPlayerPos;
 	private Quaternion correctPlayerRot;
     //public _PlayerMovement playerMovement;
-    public Animator anim;
+    public Animator anim = null;
 	// Use this for initialization
 	void Start () {
         /*if (photonView.isMine) {
 			playerMovement.enabled = true;
 		}*/
-        anim = gameObject.GetComponentInChildren<Animator>();
+       
         
 	}
 
@@ -29,6 +29,10 @@ public class _NetworkPlayer: Photon.MonoBehaviour {
 
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
 	{
+        if (anim == null)
+        {
+            anim = gameObject.GetComponentInChildren<Animator>();
+        }
 		Debug.Log("Something is happening to the stream...");
 		if (stream.isWriting)
 		{
