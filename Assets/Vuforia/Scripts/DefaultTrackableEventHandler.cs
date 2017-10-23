@@ -5,6 +5,7 @@ Confidential and Proprietary - Protected under copyright and other laws.
 ==============================================================================*/
 
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Vuforia
 {
@@ -72,6 +73,8 @@ namespace Vuforia
             Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
             Game game = GetComponent<Game>();
             MagicTowerBehaviorScript magicTower = GetComponent<MagicTowerBehaviorScript>();
+            MovePlayer[] player = GetComponentsInChildren<MovePlayer>(true);
+            NavMeshAgent[] agent = GetComponentsInChildren<NavMeshAgent>(true);
             // Enable rendering:
             foreach (Renderer component in rendererComponents)
             {
@@ -83,8 +86,16 @@ namespace Vuforia
             {
                 component.enabled = true;
             }
+            foreach (MovePlayer mp in player)
+            {
+                mp.enabled = true;
+            }
+            foreach (NavMeshAgent temp in agent)
+            {
+                temp.enabled = true;
+            }
 
-            if(game != null)
+            if (game != null)
             {
                 game.enabled = true;
             }
@@ -102,6 +113,8 @@ namespace Vuforia
             Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
             Game game = GetComponent<Game>();
             MagicTowerBehaviorScript magicTower = GetComponent<MagicTowerBehaviorScript>();
+            MovePlayer[] player = GetComponentsInChildren<MovePlayer>(true);
+            NavMeshAgent[] agent = GetComponentsInChildren<NavMeshAgent>(true);
             // Disable rendering:
             foreach (Renderer component in rendererComponents)
             {
@@ -113,6 +126,14 @@ namespace Vuforia
             {
                 component.enabled = false;
             }
+            foreach (MovePlayer mp in player)
+            {
+                mp.enabled = false;
+            }
+            foreach (NavMeshAgent temp in agent)
+            {
+                temp.enabled = false;
+            }
             if (game != null)
             {
                 game.enabled = false;
@@ -121,6 +142,7 @@ namespace Vuforia
             {
                 magicTower.enabled = false;
             }
+
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
         }
 
