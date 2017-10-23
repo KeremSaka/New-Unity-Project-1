@@ -9,6 +9,7 @@ public class _NetworkPlayer: Photon.MonoBehaviour {
 	private Quaternion correctPlayerRot;
     //public _PlayerMovement playerMovement;
     public Animator anim = null;
+    private MovePlayer player = null;
 	// Use this for initialization
 	void Start () {
         /*if (photonView.isMine) {
@@ -33,6 +34,10 @@ public class _NetworkPlayer: Photon.MonoBehaviour {
         {
             anim = gameObject.GetComponentInChildren<Animator>();
         }
+        if(anim == null)
+        {
+            player = gameObject.GetComponentInChildren<MovePlayer>();
+        }
 		Debug.Log("Something is happening to the stream...");
 		if (stream.isWriting)
 		{
@@ -43,7 +48,11 @@ public class _NetworkPlayer: Photon.MonoBehaviour {
             stream.SendNext(anim.GetBool("Run"));
             stream.SendNext(anim.GetBool("Attack"));
             stream.SendNext(anim.GetBool("Death"));
-
+            stream.SendNext(player.getHealth());
+            if(player.getHealth() <= 0)
+            {
+                player.Kill();
+            }
         }
 		else
 		{
@@ -57,6 +66,10 @@ public class _NetworkPlayer: Photon.MonoBehaviour {
             temp = (bool)stream.ReceiveNext();
             anim.SetBool("Death", temp);
 
+            if ((float)stream.ReceiveNext() <= 0)
+            {
+                player.Kill();
+            }
         }
 	}
 }

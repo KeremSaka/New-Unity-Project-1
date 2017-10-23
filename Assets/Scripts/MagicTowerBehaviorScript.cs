@@ -20,7 +20,7 @@ public class MagicTowerBehaviorScript : MonoBehaviour {
         target = turretCollider.getTarget();
         if(target != null)
         {
-            particleAttractor.transform.position = new Vector3(target.transform.position.x, target.transform.position.y +0.5f, target.transform.position.z);
+            particleAttractor.transform.position = new Vector3(target.transform.position.x, target.transform.position.y +0.8f, target.transform.position.z);
             currentTime -= Time.deltaTime;
             if(currentTime <= 0)
             {
@@ -31,7 +31,7 @@ public class MagicTowerBehaviorScript : MonoBehaviour {
         }
         else
         {
-            particleAttractor.transform.position = gameObject.transform.position;
+            particleAttractor.transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
         }
 	}
 
