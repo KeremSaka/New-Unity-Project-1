@@ -76,8 +76,7 @@ public class MovePlayer : MonoBehaviour
                 _navMeshAgent.isStopped = true;//Nav Mesh agend stops in current position and will not move until started again
                 anim.SetBool("Run", false);//Run animation will be stopped
                 anim.SetBool("Attack", true);//Attack animation starts
-                //animRun = false;
-                //animAttack = true;
+
                 if (!attack)
                 {
                     StartCoroutine(DamageWall());
@@ -88,30 +87,11 @@ public class MovePlayer : MonoBehaviour
                 _navMeshAgent.isStopped = true;
                 anim.SetBool("Run", false);
                 anim.SetBool("Attack", true);
-                //animRun = false;
-                //animAttack = true;
+
                 if (!attack)
                 {
                     StartCoroutine(DamageWall());
                 }
-            }
-
-            if (other.gameObject.tag == "Bullet")
-            {
-                //Declare after new projectile types has been declared
-                /*
-                ProjectileMovement projectile = other.gameObject.GetComponent<ProjectileMovement>();
-                decreaseHealth(projectile.getDamage());
-
-
-                if (health <= 0)
-                {
-
-                    //GameData.Instance.EnemyKilled++;
-                    dying = true;
-                    StartCoroutine(Death());
-                }*/
-
             }
         }
 
@@ -180,9 +160,11 @@ public class MovePlayer : MonoBehaviour
     }
     IEnumerator Idle()//a pause until the mesh is recalculated and a new destiantion can be set
     {
-        yield return new WaitForSeconds(2f);
+        anim.SetBool("Run", false);
+        yield return new WaitForSeconds(1f);
         _navMeshAgent.isStopped = false;
         SetDestinationNavMesh();
+        anim.SetBool("Run", true);
     }
     private void rotateTowards(float targetX, float targetZ)//rotate this game object towards an target X an Z position
     {
@@ -205,9 +187,10 @@ public class MovePlayer : MonoBehaviour
     public void dealDamage(float damage)
     {
         health -= damage;
-        if(health <= 0)
-        {
-            StartCoroutine(Death());
-        }
+      
+    }
+    public void Kill()
+    {
+        StartCoroutine(Death());
     }
 }
