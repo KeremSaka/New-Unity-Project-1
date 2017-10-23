@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4957739674059544}
   - component: {fileID: 114353986221219950}
+  - component: {fileID: 114684594189910700}
   m_Layer: 5
   m_Name: BOOM!
   m_TagString: Untagged
@@ -122,12 +123,23 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 114353986221219950}
+  - {fileID: 114684594189910700}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &114684594189910700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1749950023392224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32f100dd06efa44cac33da3e184fb40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198445578753210120
 ParticleSystem:
   m_ObjectHideFlags: 1
